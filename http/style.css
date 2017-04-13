@@ -1,0 +1,70 @@
+#title {
+	background-image: url("img/KEH5.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	text-align: center;	
+	height: 60vh;
+	margin: 1%;
+}
+#titleText{
+	font-size: 200%;
+	color: black;
+	position: relative;
+	float: left;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50%;
+	margin: 0 auto;
+	background-color: rgba(200, 200, 200, .7);
+}
+#teammembers{
+	overflow: hidden;
+	width: 100%;
+}
+#teammembers hr{
+	border-color: black;
+}
+.profile{
+	padding: 1%;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	width: 90%;
+	display: table;
+	vertical-align: top;
+	overflow: hidden;
+	background-color: #ced6e2;
+}
+.profile div{
+	display: table-cell;
+	padding: inherit;
+	vertical-align: top;
+}
+.photo img{
+	width: 100%;
+}
+.profile-alt{
+	float: right;
+	padding: 1%;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	width: 90%;
+	display: table;
+	vertical-align: top;
+	overflow: hidden;
+	background-color: #ced6e2;
+}
+.profile-alt div{
+	display: table-cell;
+	padding: inherit;
+	vertical-align: top;
+}
+.profile-alt .photo{
+	float: right;
+}
+body{
+	background-color: #f9f9f9;
+	font-family: sans-serif;	
+	color: rgba(50, 50, 50, 1);
+}
