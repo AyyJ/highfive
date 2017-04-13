@@ -63,6 +63,27 @@
 .profile-alt .photo{
 	float: right;
 }
+.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: lightblue;
+    /* border-bottom: 1px solid black; */
+}
+.topnav li {
+    float: left;
+    padding: 14px 16px;
+}
+.topnav li a {
+    display: block;
+    color: darkblue;
+    text-align: center;
+    text-decoration: none;
+}
+.topnav li a:hover {
+    background-color: #111;
+}
 body{
 	background-color: #f9f9f9;
 	font-family: sans-serif;	
