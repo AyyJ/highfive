@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+- '6'
+before_script:
+- npm install -g gulp
+script: gulp
+deploy:
+  provider: heroku
+  api_key:
+    secure: PUbtT6i431rlGY+8ix7O6QksFAFH3/qU1tY78o2Py2KzsVCDDKET8uc1ckpvDPYp/cN/pWUKXk1y/mh+7zIFnvi2m0FS9OOpAf9MghS+bm0aSs9eLNH3U0HSzHocLFEoyN0URCUqZ6NLaxVUOHa2vS9jbxOx81VNLlA0RvQHyKT0kk2Oj0/k6GfvaHEODZrM91EcctFuKZ1yrHXrNMOPDBw38Y3+qOdih9TaizippE+RRZJEutdmkmFRfIjSNv3/8vWlVuHPeJg2G0hUAwXF/2Jdw2CiMWqQPR/B/prnhg3GGjFqQVuSVHPG/aSBq+1Fw/co1UmIbdbH+Tk8hgI/J/MIO6PeYdncUxz64aCWJxfE89jLSodC2/OoB+itIEx61b7ADI4yf7dmsdvuwoeS+l6w5em8UAfitK+K9+AQzEBQZ/lQeo52Z+WBWqW5T7qo+fbssee+hkh5cSa2bqMYn4KrC72uvdXSPoXktpOfFP7WvgTJF80cGcpYMZQPpcGHHTiwBPSmzJTK31QsRMdoPcHzCip0jZl+MiqpbDTSjvuv41u83IIFWzi6L9NPRHh9yu2qZs95udvats5PrBakaFJJN7yzkoo1ck2+m3xglHXcPeg8jxt/SlLfQz3zkBHgplco5KJIOs3QgM3SV8Wln5X2dPUvBeYjQE/GGyjJzi4=
+  app: highfive
+  on:
+    repo: AyyJ/highfive
