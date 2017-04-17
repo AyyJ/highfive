@@ -1,3 +1,4 @@
 function foo(bar){
-  return (bar === "baz");
+// comment
+      	return (bar === "baz");
 }
