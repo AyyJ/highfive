@@ -1,4 +1,4 @@
-var functions = require('firebase-functions');
+const functions = require('firebase-functions');
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -9,17 +9,17 @@ var functions = require('firebase-functions');
 
 exports.isValidPhone = functions.https.onRequest((req, res) => {
 	//Grab phone number from request 
-	var phoneNumber = req.query.phoneNumber;
-	var validPhone = new RegExp('[(]0-9{3}[)]0-9{3}-0-9{4}');
+	const phoneNumber = req.query.phoneNumber;
+	const validPhone = new RegExp('[(]0-9{3}[)]0-9{3}-0-9{4}');
 
 	//Strip white space
 	phoneNumber.replace(" ", "");
 
 	//Set up response header
-	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Origin', '**');
 
 	//Check against regex
-	if(phoneNumber === validPhone){
+	if(validPhone.test(phoneNumber)){
 		res.send(phoneNumber + " is a valid phone number!");
 	}
 	else{

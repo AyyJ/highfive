@@ -10,6 +10,5 @@ function submitPhoneNumberForm() {
   };
   var url = 'https://us-central1-highfive-c6584.cloudfunctions.net/isValidPhone?phoneNumber=' + phoneNumberValue;
   xhr.open("GET", url, true);
-  xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
   xhr.send(null);
 }
