@@ -7,7 +7,6 @@ var functions = require('firebase-functions');
 //  response.send("Hello from Firebase!");
 // });
 
-
 exports.isValidPhone = functions.https.onRequest((req, res) => {
 	//Grab phone number from request 
 	var phoneNumber = req.query.phoneNumber;
@@ -15,6 +14,9 @@ exports.isValidPhone = functions.https.onRequest((req, res) => {
 
 	//Strip white space
 	phoneNumber.replace(" ", "");
+
+	//Set up response header
+	res.header('Access-Control-Allow-Origin', '*');
 
 	//Check against regex
 	if(phoneNumber === validPhone){
@@ -26,4 +28,5 @@ exports.isValidPhone = functions.https.onRequest((req, res) => {
 });
 
 // exports.formatPhone = functions.https.onRequest((req, res) => {
+
 // });
