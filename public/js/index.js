@@ -2,9 +2,7 @@ function submitPhoneNumberForm() {
   var phoneNumberValue = document.getElementById("phoneNumber").value;
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
-    console.log("Srarting request");
     if (this.readyState == 4 && this.status == 200) {
-      console.log("Got response");
       document.getElementById("demo").innerHTML = this.responseText;
     }
   };

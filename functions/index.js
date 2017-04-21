@@ -10,13 +10,13 @@ const functions = require('firebase-functions');
 exports.isValidPhone = functions.https.onRequest((req, res) => {
 	//Grab phone number from request 
 	const phoneNumber = req.query.phoneNumber;
-	const validPhone = new RegExp('[(]0-9{3}[)]0-9{3}-0-9{4}');
+	const validPhone = new RegExp('[(][0-9]{3}[)][0-9]{3}[-][0-9]{4}');
 
 	//Strip white space
 	phoneNumber.replace(" ", "");
 
 	//Set up response header
-	res.header('Access-Control-Allow-Origin', '**');
+	res.header('Access-Control-Allow-Origin', "*");
 
 	//Check against regex
 	if(validPhone.test(phoneNumber)){
