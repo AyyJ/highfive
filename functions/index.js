@@ -13,13 +13,13 @@ exports.isValidPhone = functions.https.onRequest((req, res) => {
 	const validPhone = new RegExp('[(][0-9]{3}[)][0-9]{3}[-][0-9]{4}');
 
 	//Strip white space
-	phoneNumber.replace(" ", "");
+	phoneNumberTemp = phoneNumber.replace(" ", "");
 
 	//Set up response header
 	res.header('Access-Control-Allow-Origin', "*");
 
 	//Check against regex
-	if(validPhone.test(phoneNumber)){
+	if(validPhone.test(phoneNumberTemp)){
 		res.send(phoneNumber + " is a valid phone number!");
 	}
 	else{
