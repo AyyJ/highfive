@@ -31,15 +31,17 @@ exports.formatPhone = functions.https.onRequest((req, res) => {
 	const phoneNumber = req.query.phoneNumber;
 
 	//If not valid, stop and notify of failure
-	if(!validifyPhone(phoneNumber)){
-		res.send(phoneNumber + " is not a valid phone number!");
-		return;
-	}
+    if(!validifyPhone(phoneNumber)){
+        return res.send(phoneNumber + " is not a valid phone number!");
+    }
+    else{
 
-	//It's all good, begin formatting!
+        const phoneNumber = phoneStrip(phoneNumber);
+        res.send(phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3"));
+    }
 });
 
-const validifyPhone = function(phoneNumber){
+function validifyPhone(phoneNumber){
 	//Set up regexes
 	const validPhone = new RegExp('[(][0-9]{3}[)][0-9]{3}[-][0-9]{4}');
 	const validPhoneDigitsOnly = new RegExp('[0-9]{10}');
@@ -55,3 +57,13 @@ const validifyPhone = function(phoneNumber){
 		return false;
 	}
 }
+
+/*
+ strips the number passed to it and returns the stream of digits.
+
+ */
+function phoneStrip(number){
+
+    return number.replace(/[^\d]/g, "");
+}
+
