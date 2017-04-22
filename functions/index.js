@@ -11,8 +11,8 @@ exports.isValidPhone = functions.https.onRequest((req, res) => {
 	// //Strip white space
 	// phoneNumberTemp = phoneNumber.replace(/ /gi, "");
 
-	// //Set up response header
-	// res.header('Access-Control-Allow-Origin', "*");
+	//Set up response header
+	res.header('Access-Control-Allow-Origin', "*");
 
 	//Check against regex
 	if(validifyPhone(phoneNumber)){
