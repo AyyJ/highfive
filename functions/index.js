@@ -4,18 +4,18 @@ exports.isValidPhone = functions.https.onRequest((req, res) => {
 	//Grab phone number from request 
 	const phoneNumber = req.query.phoneNumber;
 	
-	//Set up regexes
-	const validPhone = new RegExp('[(][0-9]{3}[)][0-9]{3}[-][0-9]{4}');
-	const validPhoneDigitsOnly = new RegExp('[0-9]{10}');
+	// //Set up regexes
+	// const validPhone = new RegExp('[(][0-9]{3}[)][0-9]{3}[-][0-9]{4}');
+	// const validPhoneDigitsOnly = new RegExp('[0-9]{10}');
 	
-	//Strip white space
-	phoneNumberTemp = phoneNumber.replace(" ", "");
+	// //Strip white space
+	// phoneNumberTemp = phoneNumber.replace(/ /gi, "");
 
-	//Set up response header
-	res.header('Access-Control-Allow-Origin', "*");
+	// //Set up response header
+	// res.header('Access-Control-Allow-Origin', "*");
 
 	//Check against regex
-	if(validPhone.test(phoneNumberTemp) || validPhoneDigitsOnly.test(phoneNumberTemp)){
+	if(validifyPhone(phoneNumber)){
 		res.send(phoneNumber + " is a valid phone number!");
 	}
 	else{
@@ -38,3 +38,20 @@ exports.formatPhone = functions.https.onRequest((req, res) => {
 
 	//It's all good, begin formatting!
 });
+
+const validifyPhone = function(phoneNumber){
+	//Set up regexes
+	const validPhone = new RegExp('[(][0-9]{3}[)][0-9]{3}[-][0-9]{4}');
+	const validPhoneDigitsOnly = new RegExp('[0-9]{10}');
+
+	//Strip white space
+	phoneNumberTemp = phoneNumber.replace(/ /gi, "");
+
+	//Check against regex
+	if(validPhone.test(phoneNumberTemp) || validPhoneDigitsOnly.test(phoneNumberTemp)){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
