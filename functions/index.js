@@ -25,10 +25,9 @@ exports.formatPhone = functions.https.onRequest((req, res) => {
 
 	//If not valid, stop and notify of failure
     if(!validifyPhone(phoneNumber)){
-        return res.send(phoneNumber + " is not a valid phone number!");
+        res.send(phoneNumber + " is not a valid phone number!");
     }
     else{
-
         const phoneNumber = phoneStrip(phoneNumber);
         res.send(phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3"));
     }
