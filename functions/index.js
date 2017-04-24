@@ -3,13 +3,6 @@ const functions = require('firebase-functions');
 exports.isValidPhone = functions.https.onRequest((req, res) => {
 	//Grab phone number from request 
 	const phoneNumber = req.query.phoneNumber;
-	
-	// //Set up regexes
-	// const validPhone = new RegExp('[(][0-9]{3}[)][0-9]{3}[-][0-9]{4}');
-	// const validPhoneDigitsOnly = new RegExp('[0-9]{10}');
-	
-	// //Strip white space
-	// phoneNumberTemp = phoneNumber.replace(/ /gi, "");
 
 	//Set up response header
 	res.header('Access-Control-Allow-Origin', "*");
@@ -24,11 +17,11 @@ exports.isValidPhone = functions.https.onRequest((req, res) => {
 });
 
 exports.formatPhone = functions.https.onRequest((req, res) => {
-	//Set up response header
-	res.header('Access-Control-Allow-Origin', "*");
-
 	//Grab phone number from request
 	const phoneNumber = req.query.phoneNumber;
+
+	//Set up response header
+	res.header('Access-Control-Allow-Origin', "*");
 
 	//If not valid, stop and notify of failure
     if(!validifyPhone(phoneNumber)){
@@ -43,8 +36,8 @@ exports.formatPhone = functions.https.onRequest((req, res) => {
 
 function validifyPhone(phoneNumber){
 	//Set up regexes
-	const validPhone = new RegExp('[(][0-9]{3}[)][0-9]{3}[-][0-9]{4}');
-	const validPhoneDigitsOnly = new RegExp('[0-9]{10}');
+	const validPhone = new RegExp('[(][0-9]{3}[)][0-9]{3}[-]?[0-9]{4}');
+	const validPhoneDigitsOnly = new RegExp('[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}');
 
 	//Strip white space
 	phoneNumberTemp = phoneNumber.replace(/ /gi, "");
