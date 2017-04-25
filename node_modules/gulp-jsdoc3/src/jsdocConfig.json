@@ -1,0 +1,18 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "opts": {
+    "destination": "./public/docs"
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "templates": {
+    "systemName": "HighFive Docs",
+    "cleverLinks": true,
+    "theme": "yeti",
+    "linenums": true,
+    "dateFormat": "MMMM Do YYYY, h:mm:ss a"
+  }
+}

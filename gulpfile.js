@@ -1,6 +1,6 @@
 var gulp = require('gulp'),
    jshint = require('gulp-jshint'),
-    apidoc = require('gulp-apidoc'),
+    jsdoc = require('gulp-jsdoc3'),
     mocha = require('gulp-mocha');
 
 /**
@@ -20,13 +20,21 @@ gulp.task('mocha', () =>
 );
 
 /**
+* Overwrite fresh-installed jsdocConfig
+*/
+gulp.task('overwrite', () =>
+gulp.src('./jsdocConfig.json')
+  .pipe(gulp.dest('./node_modules/gulp-jsdoc3/dist'))
+  .pipe(gulp.dest('./node_modules/gulp-jsdoc3/src'))
+);
+
+/**
 * Run documentation generator
 */
-gulp.task('apidoc', function(done){
-   apidoc({
-      src: "public/js/",
-      dest: "public/doc/"
-   }, done);
+gulp.task('jsdoc', function (cb) {
+    var config = require('./jsdocConfig.json')
+    gulp.src(['README.md', './functions/*.js'], {read: false})
+        .pipe(jsdoc(config, cb));
 });
 
-gulp.task('default', ['lint', 'mocha', 'apidoc']);
+gulp.task('default', ['lint', 'mocha', 'overwrite', 'jsdoc']);

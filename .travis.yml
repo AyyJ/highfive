@@ -5,6 +5,8 @@ node_js:
 
 before_script:
   - npm install -g gulp
+  - npm install --save-dev gulp-jsdoc3
+
 
 script: gulp
 

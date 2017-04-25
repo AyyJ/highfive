@@ -22,5 +22,8 @@
     "type": "git",
     "url": "https://github.com/ayyj/highfive_stage"
   },
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "gulp-jsdoc3": "^1.0.1"
+  }
 }
