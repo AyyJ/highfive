@@ -41,7 +41,7 @@ exports.formatPhone = functions.https.onRequest((req, res) => {
 /*
 	Logic to determine if phone number is valid
 */
-function validatePhone(phoneNumber){
+exports.validatePhone = function(phoneNumber){
 	//Set up regexes
 	const validPhone = new RegExp('^[(][0-9]{3}[)][0-9]{3}[-]?[0-9]{4}$');
 	const validPhoneDigitsOnly = new RegExp('^[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}$');
