@@ -1,5 +1,5 @@
 {
-  "name": "HighFive_Application",
+  "name": "HighFive",
   "version": "0.0.0",
   "description": "UC SAN DIEGO SPRING 2017 CSE 112 PROJECT",
   "main": "public/js/index.js",
@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "gulp": "^3.9.1",
-    "gulp-apidoc": "^0.2.6",
     "gulp-jshint": "^2.0.4",
     "gulp-mocha": "^4.3.0",
     "jshint": "^2.9.4",
