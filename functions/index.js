@@ -4,7 +4,7 @@ const functions = require('firebase-functions');
 	Responds with result of phone validation
 */
 exports.isValidPhone = functions.https.onRequest((req, res) => {
-	//Grab phone number from request 
+	//Grab phone number from request
 	const phoneNumber = req.query.phoneNumber;
 
 	//Set up response header
@@ -37,6 +37,11 @@ exports.formatPhone = functions.https.onRequest((req, res) => {
         res.send(format(phoneNumber));
     }
 });
+
+// Unit Test Entry
+exports.test_validatePhone = function(phoneNumber) {
+	return validatePhone(phoneNumber);
+};
 
 /*
 	Logic to determine if phone number is valid
@@ -73,4 +78,3 @@ function format(phoneNumber){
 function phoneStrip(number){
     return number.replace(/[^\d]/g, "");
 }
-
