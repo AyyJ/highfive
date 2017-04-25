@@ -48,7 +48,9 @@ exports.formatPhone = functions.https.onRequest((req, res) => {
         res.send("Unable to format. " + phoneNumber + " is not a valid phone number!");
     }
     else{
-        res.send(format(phoneNumber));
+    	var goodRes = format(phoneNumber);
+    	goodRes += "<iframe src=\"https://giphy.com/embed/3oEjHV0z8S7WM4MwnK\" width=\"480\" height=\"240.4452690166976\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe>"
+        res.send(goodRes);
     }
 });
 
