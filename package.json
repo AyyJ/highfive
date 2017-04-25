@@ -13,14 +13,17 @@
     "gulp-jshint": "^2.0.4",
     "gulp-mocha": "^4.3.0",
     "jshint": "^2.9.4",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "firebase-admin": "^4.1.2",
+    "firebase-functions": "^0.5",
+    "google-cloud": "^0.48.0"
   },
   "engines": {
     "node": "4.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ayyj/highfive_stage"
+    "url": "https://github.com/ayyj/highfive"
   },
   "license": "UNLICENSED",
   "devDependencies": {
