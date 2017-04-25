@@ -53,5 +53,21 @@ describe("Valid Phone and Format Phone", function() {
         assert.equal(response, false);
     });
   });
+  describe("Check Format", function() {
+
+    it("Correct Formatted Number", function() {
+        var phoneNumber = "1231231230";
+        var response = index.test_format(phoneNumber);
+
+        assert.equal(response, "(123) 123-1230");
+    });
+
+    it("Correct Formatted Number", function() {
+        var phoneNumber = "(123)1231230";
+        var response = index.test_format(phoneNumber);
+
+        assert.equal(response, "(123) 123-1230");
+    });
+  });
 
 });
