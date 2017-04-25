@@ -11,11 +11,9 @@
     "gulp": "^3.9.1",
     "gulp-jshint": "^2.0.4",
     "gulp-mocha": "^4.3.0",
+    "gulp-jsdoc3": "^1.0.1",
     "jshint": "^2.9.4",
-    "mocha": "^3.2.0",
-    "firebase-admin": "^4.1.2",
-    "firebase-functions": "^0.5",
-    "google-cloud": "^0.48.0"
+    "mocha": "^3.2.0"
   },
   "engines": {
     "node": "4.0.0"

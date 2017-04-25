@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
    jshint = require('gulp-jshint'),
-    jsdoc = require('gulp-jsdoc3'),
-    mocha = require('gulp-mocha');
+   jsdoc = require('gulp-jsdoc3'),
+   mocha = require('gulp-mocha');
 
 /**
 * Lint Checker
@@ -18,7 +18,6 @@ gulp.task('mocha', () =>
    gulp.src('test/test.js', {read: false})
       .pipe(mocha({reporter: 'nyan'}))
 );
-
 /**
 * Overwrite fresh-installed jsdocConfig
 */
@@ -27,7 +26,6 @@ gulp.src('./jsdocConfig.json')
   .pipe(gulp.dest('./node_modules/gulp-jsdoc3/dist'))
   .pipe(gulp.dest('./node_modules/gulp-jsdoc3/src'))
 );
-
 /**
 * Run documentation generator
 */
