@@ -11,7 +11,7 @@ exports.isValidPhone = functions.https.onRequest((req, res) => {
 	res.header('Access-Control-Allow-Origin', "*");
 
 	//Check against regex
-	if(exports.validatePhone(phoneNumber)){
+	if(validatePhone(phoneNumber)){
 		res.send(phoneNumber + " is a valid phone number!");
 	}
 	else{
