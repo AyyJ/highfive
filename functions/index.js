@@ -74,5 +74,3 @@ function phoneStrip(number){
     return number.replace(/[^\d]/g, "");
 }
 
-function 
-
