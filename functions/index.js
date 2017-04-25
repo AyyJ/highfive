@@ -63,6 +63,11 @@ function validatePhone(phoneNumber){
 	}
 }
 
+// Unit Test Entry
+exports.test_format = function(phoneNumber) {
+	return format(phoneNumber);
+};
+
 /*
 	Logic to format a validated 10-digit phone number
 */
