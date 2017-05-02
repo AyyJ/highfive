@@ -1,0 +1,25 @@
+---
+engines:
+  csslint:
+    enabled: false
+  coffeelint:
+    enabled: false
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+        #mass_threshold: 50
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+ratings:
+  paths:
+  - functions/**
+  - public/index.html
+  - "**.js"
+exclude_paths:
+- functions/node_modules
+- public/**
+- docs
