@@ -50,7 +50,7 @@ exports.formatPhone = functions.https.onRequest((req, res) => {
     else{
     	var goodRes = format(phoneNumber);
 			// TODO: Presentation
-    	// goodRes += ", nice work!<br><iframe src=\"https://giphy.com/embed/3oEjHV0z8S7WM4MwnK\" width=\"480\" height=\"240.4452690166976\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe>"
+    	goodRes += ", nice work!<br><iframe src=\"https://giphy.com/embed/3oEjHV0z8S7WM4MwnK\" width=\"480\" height=\"240.4452690166976\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe>"
         res.send(goodRes);
     }
 });
