@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/pure-min.css">
+    <link rel="stylesheet" href="css/custom.css">
     <title>High Five Landing Page</title>
     <style media="screen">
       body { background: #ECEFF1 ; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; padding-left: 10px;}
@@ -13,18 +15,31 @@
     </style>
   </head>
   <body>
-  <h1>High Five Landing Page</h1>
-  <p>View our team page at <a href="https://ayyj.github.io/highfive/">http://ayyj.github.io/HighFive</a>.</p>
-  <section>
-    <h4>Phone Number Formatter</h4>
-    <small>Currently only supports US phone numbers.</small><br><br>
-    <form id="phoneNumberForm">
-      <label>Phone Number: </label><input type="text" id="phoneNumber" placeholder="Enter your number here">
-      <input type="button" value="Format" onclick="submitPhoneNumberForm(this)">
-	    <input type="button" value="Validate" onclick="submitPhoneNumberForm(this)">
-    </form>
-    <p id="demo"></p>
-  </section>
+  <div class="pure-g">
+    <div class="pure-u-1">
+      <div class="pure-menu pure-menu-horizontal">
+        <a href="#" class="pure-menu-heading pure-menu-link">High Five</a>
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Mission Statement</a></li>
+            <li class="pure-menu-item"><a href="http://ayyj.github.io/HighFive" class="pure-menu-link">About the Team</a></li>
+            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
+        </ul>
+      </div>
+      <hr>
+      <section class="text-center box center">
+        <h4>Phone Number Formatter</h4>
+        <small>Currently only supports US phone numbers.</small><br><br>
+        <form id="phoneNumberForm" class="pure-form pure-form-stacked">
+          <fieldset>
+            <label>Phone Number: </label><input type="text" id="phoneNumber" placeholder="Enter a number"><br>
+            <button class="button-blue pure-button" type="button" value="Format" onclick="submitPhoneNumberForm(this)">Format</button>
+      	    <button class="button-blue pure-button" type="button" value="Validate" onclick="submitPhoneNumberForm(this)">Validate</button>
+          </fieldset>
+        </form>
+        <p id="demo"></p>
+      </section>
+    </div>
+  </div>
   </body>
   <script src="js/index.js"></script>
 </html>
