@@ -20,3 +20,4 @@ after_success:
 branches:
   only:
   - master
+  - conveyor-belt-3.0
