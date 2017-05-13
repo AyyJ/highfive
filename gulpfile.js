@@ -31,7 +31,7 @@ gulp.src('./jsdocConfig.json')
 */
 gulp.task('jsdoc', function (cb) {
     var config = require('./jsdocConfig.json')
-    gulp.src(['README.md', './functions/*.js'], {read: false})
+    gulp.src(['README.md', './routes/*.js'], {read: false})
         .pipe(jsdoc(config, cb));
 });
 
