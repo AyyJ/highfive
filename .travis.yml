@@ -10,6 +10,9 @@ deploy:
   provider: heroku
   api_key:
     secure: $HEROKU_TOKEN
+  app:
+    master: cse112-highfive
+    conveyor-belt-3.0: cse112-highfive-staging
   slack: cse112-highfive:IwXDKj8qHbdq4dw6GemuC7uL
 addons:
   code_climate:
