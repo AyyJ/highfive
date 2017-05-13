@@ -2,8 +2,10 @@ function submitPhoneNumberForm(ele) {
   var phoneNumberValue = document.getElementById("phoneNumber").value;
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
+    var parsedData = JSON.parse(this.responseText);
+
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML = this.responseText;
+      document.getElementById("demo").innerHTML = parsedData.message;
     }
   };
 
@@ -12,10 +14,10 @@ function submitPhoneNumberForm(ele) {
     fun = "formatPhone";
   }
   else if(ele.value === "Validate"){
-    fun = "isValidPhone";
+    fun = "validPhone";
   }
 
-  var url = 'https://us-central1-highfive-c6584.cloudfunctions.net/' + fun + '?phoneNumber=' + phoneNumberValue;
+  var url = fun + '?phoneNumber=' + phoneNumberValue;
   xhr.open("GET", url, true);
   xhr.send(null);
 }
