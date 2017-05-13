@@ -10,7 +10,7 @@ script: gulp
 
 deploy:
   skip_cleanup: true
-  
+
   - provider: heroku
     api_key:
       secure: $HEROKU_TOKEN
@@ -40,3 +40,4 @@ after_success:
 branches:
   only:
   - master
+  - conveyor-belt-3.0 # REMOVE ONCE WORKING
