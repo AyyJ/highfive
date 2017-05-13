@@ -3,6 +3,7 @@ node_js:
 - '6'
 before_script:
 - npm install -g gulp
+- node app.js &
 script: gulp
 deploy:
   skip_cleanup: true
