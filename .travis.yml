@@ -1,24 +1,42 @@
 language: node_js
+
 node_js:
-- '6'
+  - "6"
+
 before_script:
-- npm install -g gulp
-- DEBUG=highfive:* npm start &
+  - npm install -g gulp
+
 script: gulp
+
 deploy:
   skip_cleanup: true
-  provider: heroku
-  api_key:
-    secure: DJz62dHoqY7O3n+6C3UNnWqnkYVxtXzC7fIDYdlzYkUTlmqH5ZHgCxT2GJNmVxkTZIU5H4Zy2QgDbMswe2DVRY8EPXQEdikizLu9kxRBYJ51YuPs2AVJo600XpMgJpYv6lwYUJ2q/jHxMJ0n+pw5wWt2kiBqVy2w0g+av454DXgfJan+eiEC7mih3L8jwI4zDPnCAqqHKG4q42V2JR5CV5JVgQealqUMY3pFUAFwTHdb+JYHweRBqed7FDzC56t15uK+/DTNz/g5CwvIoePVVjX3fCnS+4okxpEph46Z8e0n8FYjOGNi6YPEVUOVLt+7+4o8429UeVnZh91SCBcuvcaSmhueRbyqbMCWwm1jFU/7jUU2xVpe8cx6nZ3yJtC6se7Zoe79tzxHcMjFz8tb59GtYqjIyG99aEI0BUZ9ZjrO1+/o36rQ8giZt0gL1bpZNYcXgcV5ksiFTrcTw6Ek0/hp9nHCWntBkyeH/SvAsS4+0dlJHsQQQTxoiDvDmEiyJgXqs0s6hwoYJi4yTTK5ALDSKTmbxCMNpAIznYP/SvcfJFDp+IzY2RZZ3zrr83CWisHSzl4v5cZS031ds0a6ysT5NLkjMGFdX7jprGK4eNSFNADz/WClGLTh48LW9nYZJTdqg414EewkdmXyL0b9WzaINA8yfKw0cwD/j9tbj4M=
+  
+  - provider: heroku
+    api_key:
+      secure: $HEROKU_TOKEN
+    app: cse112-highfive
+      repo: ayyj/highfive
+      branch: master
+
+  - provider: heroku
+    api_key:
+      secure: $HEROKU_TOKEN
+    app: cse112-highfive
+      repo: ayyj/highfive
+      branch: conveyor-belt-3.0
+
 notifications:
   slack: cse112-highfive:IwXDKj8qHbdq4dw6GemuC7uL
+
 addons:
   code_climate:
     repo_token: $CODECLIMATE_TOKEN
+
 after_success:
-- npm install -g codeclimate-test-reporter
-- codeclimate-test-reporter < lcov.info
+  - npm install -g codeclimate-test-reporter
+  - codeclimate-test-reporter < lcov.info
+
+# safelist
 branches:
   only:
   - master
-  - conveyor-belt-3.0
