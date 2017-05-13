@@ -16,7 +16,7 @@ gulp.task('lint', function () {
 */
 gulp.task('mocha', () =>
    gulp.src('test/test.js', {read: false})
-      .pipe(mocha({reporter: 'nyan'}))
+      .pipe(mocha({reporter: 'spec'}))
 );
 /**
 * Overwrite fresh-installed jsdocConfig
@@ -31,7 +31,7 @@ gulp.src('./jsdocConfig.json')
 */
 gulp.task('jsdoc', function (cb) {
     var config = require('./jsdocConfig.json')
-    gulp.src(['README.md', './functions/*.js'], {read: false})
+    gulp.src(['README.md', './routes/*.js'], {read: false})
         .pipe(jsdoc(config, cb));
 });
 
