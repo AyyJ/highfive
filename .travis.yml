@@ -26,4 +26,4 @@ branches:
   only:
   - master
   - dev
-  - dev-fix
+  - dev_fix
