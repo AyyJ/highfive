@@ -2,6 +2,11 @@ var gulp = require('gulp'),
    jshint = require('gulp-jshint'),
    jsdoc = require('gulp-jsdoc3'),
    mocha = require('gulp-mocha');
+   dir = require('require-dir')
+   istanbul = require('gulp-istanbul');
+
+
+   dir('./gulp', { recurse: true});
 
 /**
 * Lint Checker
@@ -12,12 +17,24 @@ gulp.task('lint', function () {
 })
 
 /**
-* Run Mocha Tests
+* Instanbul + Mocha tests
 */
-gulp.task('mocha', () =>
-   gulp.src('test/test.js', {read: false})
-      .pipe(mocha({reporter: 'spec'}))
-);
+gulp.task('test', function () {
+    return gulp.src('./server/routes/*.js')
+      // Right there
+      .pipe(istanbul({includeUntested: true}))
+      .on('finish', function () {
+        gulp.src('./server/test/test.js')
+          .pipe(mocha({reporter: 'spec'}))
+          .pipe(istanbul.writeReports({
+            dir: './public/coverage',
+            reporters: [ 'lcov' ],
+            reportOpts: { dir: './public/coverage'}
+          }));
+      });
+  });
+
+
 /**
 * Overwrite fresh-installed jsdocConfig
 */
@@ -35,4 +52,4 @@ gulp.task('jsdoc', function (cb) {
         .pipe(jsdoc(config, cb));
 });
 
-gulp.task('default', ['lint', 'mocha', 'overwrite', 'jsdoc']);
+gulp.task('default', ['lint', 'test', 'overwrite', 'jsdoc']);

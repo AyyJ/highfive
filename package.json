@@ -12,19 +12,28 @@
     "debug": "~2.6.3",
     "ejs": "~2.5.6",
     "express": "~4.15.2",
-    "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2",
-    "supertest": "^3.0.0",
     "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
     "gulp-jsdoc3": "^1.0.1",
     "gulp-jshint": "^2.0.4",
+    "gulp-minify-css": "^1.2.4",
     "gulp-mocha": "^4.3.0",
+    "gulp-uglify": "^2.1.2",
     "jshint": "^2.9.4",
-    "mocha": "^3.2.0"
+    "main-bower-files": "^2.13.1",
+    "mocha": "^3.2.0",
+    "morgan": "~1.8.1",
+    "require-dir": "^0.3.1",
+    "serve-favicon": "~2.4.2",
+    "supertest": "^3.0.0",
+    "wiredep": "^4.0.0",
+    "istanbul": "^0.4.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "gulp-istanbul": "^1.1.1",
     "mocha": "^2.4.5",
+    "nyc": "^10.3.2",
     "should": "^11.2.1",
     "supertest": "^3.0.0"
   }
