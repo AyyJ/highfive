@@ -2,7 +2,7 @@ var gulp = require('gulp'),
 jshint = require('gulp-jshint'),
 jsdoc = require('gulp-jsdoc3'),
 mocha = require('gulp-mocha');
-instanbul = require('gulp-istanbul')
+istanbul = require('gulp-istanbul')
 
 /**
 * Lint Checker
