@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "gulp-istanbul": "^1.1.1",
     "mocha": "^2.4.5",
     "should": "^11.2.1",
     "supertest": "^3.0.0"
