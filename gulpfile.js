@@ -2,7 +2,7 @@ var gulp = require('gulp'),
 jshint = require('gulp-jshint'),
 jsdoc = require('gulp-jsdoc3'),
 mocha = require('gulp-mocha');
-instanbul = require('gulp-instanbul')
+instanbul = require('gulp-istanbul')
 
 /**
 * Lint Checker
@@ -13,7 +13,7 @@ gulp.task('lint', function () {
 })
 
 /**
-* Instanbul + Mocha tests
+* Istanbul + Mocha tests
 */
 gulp.task('test', function () {
   return gulp.src('./server/routes/*.js')
