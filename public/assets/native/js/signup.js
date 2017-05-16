@@ -55,7 +55,7 @@ $(document).ready(function(){
                 if(url == '/api/employees') {
                     localStorage.setItem('userState', 1);
                     localStorage.setItem('currentUser', JSON.stringify(response));
-                    location.href = '../../views/visitors.html';
+                    location.href = '../../visitors';
                 }
                 else if (url == '/api/companies') {
                     localStorage.setItem('currentCompany', JSON.stringify(response));
@@ -67,7 +67,7 @@ $(document).ready(function(){
                 var resJSON = JSON.stringify(response);
                 alert(jQuery.parseJSON(resJSON).responseText);
                 event.preventDefault();
-                location.href = '/signup.html';
+                location.href = '/signup';
             }
         });
     }
