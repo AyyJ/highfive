@@ -2,8 +2,10 @@ language: node_js
 node_js:
 - '6'
 before_script:
+- npm install -g nightwatch
 - npm install -g gulp
 - DEBUG=highfive:* npm start &
+- npm run serve:dist &
 script: gulp
 deploy:
   skip_cleanup: true
@@ -17,11 +19,16 @@ deploy:
 addons:
   code_climate:
     repo_token: $CODECLIMATE_TOKEN
+  sauce_connect:
+      username: "adejesus"
+      access_key: 429e993c-8e67-43b3-9e25-4c4e71855846
+  sauce_connect: true
 after_success:
 - npm install -g codeclimate-test-reporter
 - codeclimate-test-reporter < lcov.info
 
 branches:
   only:
+  - nightwatch
   - master
   - dev
