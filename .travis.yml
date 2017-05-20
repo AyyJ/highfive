@@ -5,10 +5,9 @@ before_script:
 - npm install -g nightwatch
 - npm install -g gulp
 - DEBUG=highfive:* npm start &
-- npm run serve:dist &
 script:
  - gulp
- - nightwatch --config nightwatch.js --env chrome,ie11
+ - npm run e2e
 deploy:
   skip_cleanup: true
   provider: heroku
