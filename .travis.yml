@@ -6,9 +6,7 @@ before_script:
 - npm install -g gulp
 - DEBUG=highfive:* npm start &
 - npm run serve:dist &
-script:
- - gulp
- - npm run e2e
+script: gulp
 deploy:
   skip_cleanup: true
   provider: heroku
