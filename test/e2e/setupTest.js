@@ -6,7 +6,8 @@ module.exports = { // adapted from: https://git.io/vodU0
       .url('https://cse112-highfive.herokuapp.com/')
       .waitForElementVisible('body')
       .assert.title('High Five Landing Page')
-      .saveScreenshot('guinea-pig-test.png')
+      //.saveScreenshot('guinea-pig-test.png')
+      .pause(1000)
       .end();
   }
 };
