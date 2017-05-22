@@ -5,7 +5,6 @@ before_script:
 - npm install -g nightwatch
 - npm install -g gulp
 - DEBUG=highfive:* npm start &
-- npm run serve:dist &
 script: gulp
 deploy:
   skip_cleanup: true
