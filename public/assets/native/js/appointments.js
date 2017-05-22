@@ -21,6 +21,9 @@ $(document).ready(function(){
 
     appts = initializeAppts(appts);
     var source = $("#appt-list-template").html();
+    // HEY ITS KHALID: The appointments page calls this script and
+    // an error is thrown here, because "$" now refers to form-builder 
+    // I think last year's peeps just ignored it
     var template = Handlebars.compile(source);
     var compiledHtml = template(appts);
 

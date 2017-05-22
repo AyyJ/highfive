@@ -6,10 +6,10 @@ var userState = JSON.parse(localStorage.getItem("userState"));
 $(document).ready(function(){
 
 
-    // var socket = io(); //Initialize Socket
+    var socket = io(); //Initialize Socket
     //HIGHFIVE KHALID WAS HERE: SOCKET OBJECT WAS
     //SET TO "" UNTIL WE FIGURE OUT WHAT SOCKETS DO
-    var socket = "";
+    // var socket = "";
 
     //Socket variables
     var DEBUG = 1;
@@ -30,10 +30,10 @@ $(document).ready(function(){
     $('#user-name').text(curUser.first_name + ' ' +  curUser.last_name);
 
     //Connect to private socket
-    //var companyId = getCookie('company_id');
+    // var companyId = getCookie('company_id');
     //HIGHFIVE: KHALID COMMENTED THE BELOW LINE UNTIL WE 
     //FIGURE OUT SOCKETS
-    // socket.emit(VALIDATE_COMPANY_ID, companyData);
+    socket.emit(VALIDATE_COMPANY_ID, companyData);
 
    /***
     * Compile all the Handle Bar Templates
@@ -48,35 +48,35 @@ $(document).ready(function(){
 
     //SOCKET LISTEN FOR VISITOR QUEUE
     //HIGHFIVE KHALID HAS COMMENTED OUT THIS FUNCTION TOO
-    // socket.on(VISITOR_LIST_UPDATE, function (data) {
-    //     visitorList = data.visitors
-    //     //Parse Visitor List to format Date
-    //     for(var i = 0, len = visitorList.length; i< len; i++){
-    //         visitorList[i].checkin_time = formatTime(visitorList[i].checkin_time);
-    //     }
+    socket.on(VISITOR_LIST_UPDATE, function (data) {
+        visitorList = data.visitors
+        //Parse Visitor List to format Date
+        for(var i = 0, len = visitorList.length; i< len; i++){
+            visitorList[i].checkin_time = formatTime(visitorList[i].checkin_time);
+        }
 
-    //     //Parse Visitors appoitments
-    //     for(i = 0; i < len; i++){
-    //       var appList = visitorList[i].appointments;
-    //       if(appList[0]){
-    //         for(var j = 0, appLen = appList.length; j < appLen; j++){
-    //           if(compareDate(appList[j].date)){
-    //             visitorList[i].appointmentTime = formatTime(appList[j].date);
-    //             visitorList[i]._apptId = appList[j]._id;
-    //             break;
-    //           }
-    //         }
-    //       }
-    //       else{
+        //Parse Visitors appoitments
+        for(i = 0; i < len; i++){
+          var appList = visitorList[i].appointments;
+          if(appList[0]){
+            for(var j = 0, appLen = appList.length; j < appLen; j++){
+              if(compareDate(appList[j].date)){
+                visitorList[i].appointmentTime = formatTime(appList[j].date);
+                visitorList[i]._apptId = appList[j]._id;
+                break;
+              }
+            }
+          }
+          else{
       
-    //         visitorList[i].appointmentTime = "None";
-    //       }
-    //     }
+            visitorList[i].appointmentTime = "None";
+          }
+        }
 
-    //    //visitorList.checkin_time = visitorList;
-    //     var compiledHtml = template(visitorList);
-    //     $('#visitor-list').html(compiledHtml);
-    // });
+       //visitorList.checkin_time = visitorList;
+        var compiledHtml = template(visitorList);
+        $('#visitor-list').html(compiledHtml);
+    });
 
 
     /***

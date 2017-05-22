@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var mongoose = require('mongoose');
+var socketIO = require('./socket/socket');
 
 var config = require('./config/config');
 var validate = require('./config/validation');
@@ -26,6 +27,9 @@ db.once('open', function callback () {
     console.log("Connected to mongolab");
 });
 
+//Prepare socket stuff my guy
+app.set('port', config.port);
+
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
@@ -44,6 +48,11 @@ app.use('/formatPhone/', formatPhone);
 
 app.use(cors());
 require('./routes')(app);
+
+//Disable api auth if we're in dev mode
+if(app.get('env') !== 'development'){
+  app.use('/api/*', validate);
+}
 
 //Emissary files
 app.get('/settings', function(req,res){
@@ -109,5 +118,19 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+var server = require('http').createServer(app);
+
+var io = require('socket.io')(server)
+server.listen(app.get('port'), function() {
+  console.log('Express server listening on port %d in %s mode',
+    app.get('port'),
+    app.get('env'));
+});
+
+/*
+ * Create Socket.io server.
+ */
+var server = socketIO.createServer(io);
 
 module.exports = app;

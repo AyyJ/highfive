@@ -16,8 +16,8 @@ var id = GetURLParameter('code');
 var name= GetURLParameter('status');
 
 if(id){
-	var clientSecret = "a56caa836b9f386c400a69cda6f5c0b4";
-	var clientID = "11293703667.22923580850";
+	var clientSecret = "517785e2e40c8bf35a1db006a5b0e285";
+	var clientID = "167453728021.186958075527";
 	var something = {};
 	$.post("https://slack.com/api/oauth.access",
     {
@@ -34,6 +34,7 @@ if(id){
         console.log("token" + data['access_token']);
         localStorage.setItem("slackToken", data['access_token']);
         localStorage.setItem("slackChannel", channel);
+        localStorage.setItem("hookURL", webhook['url']);
     });
 
 }

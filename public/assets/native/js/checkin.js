@@ -16,7 +16,8 @@ $(document).ready(function(){
 
     //Bind Listeners
     $('#tap-to-check').on('click', startCheckIn);
-    $('.check-in').on('submit', submitForm);
+    $('.submit-check-in').on('click', submitForm);
+    // $('.check-in').on('submit', wrapItUp);
 
     //When a user starts their check in
     function startCheckIn(){
@@ -26,33 +27,29 @@ $(document).ready(function(){
             opacity: '1'
         }, 700);
         $(this).addClass('hide');
-        $('#clock').addClass('hide');
+        $('#clock').addClass('hide');     
     }
 
     //When a patient submits their form
     function submitForm(){
         //event.preventDefault();
         var data = grabFormElements();
-        //console.log(data.company_id);
-        if(localStorage.getItem("slackToken")&&localStorage.getItem("slackChannel"))
-        {
-             $.post("https://slack.com/api/chat.postMessage",
-             {
-                'token': localStorage.getItem("slackToken"),
-                'channel': localStorage.getItem("slackChannel"), 
-                'text': "Name: " + data['first_name'] + " " + data['last_name'] + " Phone Number: " + data['phone_number']
-             },
-             function(data, status){
-              });
-        }
-        socket.emit(ADD_VISITOR, data);
-
-        $(this).animate({
-            top:'35%',
-            opacity:'0'
-        },0);
-
+        var text = "Name: " + data['first_name'] + " " + data['last_name'] + " Phone Number: " + data['phone_number'];
+        var url = localStorage.getItem('hookURL');
+        $.ajax({
+            data: 'payload=' + JSON.stringify({
+                "text": text,
+                "username": "Emissary Notifier"
+            }),
+            dataType: 'json',
+            processData: false,
+            type: 'POST',
+            url: url,
+            async: true,
+        });     
+        socket.emit(ADD_VISITOR, data);           
     }
+
     //Grabs elements from the check in and puts it into an object
     function grabFormElements(){
         var newVisitor = {};
