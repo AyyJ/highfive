@@ -24,7 +24,7 @@ gulp.task('pre-test', function () {
 });
 
 /**
-* Run Mocha Tests and export Istanbul Results
+* Istanbul + Mocha tests
 */
 gulp.task('test', ['pre-test'], function () {
   return gulp.src(['./server/test/test.js'])
