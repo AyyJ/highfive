@@ -13,22 +13,8 @@ gulp.task('lint', function () {
 });
 
 /**
-* Istanbul + Mocha tests
+* Set up Istanbul
 */
-gulp.task('test', function () {
-  gulp.src('./server/test/test.js')
-  .pipe(istanbul({includeUntested: true}))
-  .on('finish', function () {
-    gulp.src('./server/test/test.js')
-    .pipe(mocha({reporter: 'spec'}))
-    .pipe(istanbul.writeReports({
-      dir: './public/coverage',
-      reporters: [ 'lcov' ],
-      reportOpts: { dir: './public/coverage'}
-    }));
-  });
-});
-
 gulp.task('pre-test', function () {
   return gulp.src(['./server/**/*.js'])
     // Covering files
@@ -37,6 +23,9 @@ gulp.task('pre-test', function () {
     .pipe(istanbul.hookRequire());
 });
 
+/**
+* Run Mocha Tests and export Istanbul Results
+*/
 gulp.task('test', ['pre-test'], function () {
   return gulp.src(['./server/test/test.js'])
     .pipe(mocha({reporter: 'spec'}))
