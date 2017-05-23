@@ -4,7 +4,7 @@ var validPhone = require('../routes/validPhone.js');
 var formatPhone = require('../routes/formatPhone.js');
 
 describe('Phone Number Validity Check', function() {
-    var url = "localhost:3000";
+    var url = "localhost:4941";
 		var goodPhone = "1231231234";
 		var badPhone = "123";
 
