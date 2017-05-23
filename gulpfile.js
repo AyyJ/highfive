@@ -1,8 +1,8 @@
 var gulp = require('gulp'),
 jshint = require('gulp-jshint'),
 jsdoc = require('gulp-jsdoc3'),
-mocha = require('gulp-mocha');
-istanbul = require('gulp-istanbul')
+mocha = require('gulp-mocha'),
+istanbul = require('gulp-istanbul');
 
 /**
 * Lint Checker
@@ -10,14 +10,13 @@ istanbul = require('gulp-istanbul')
 gulp.task('lint', function () {
   gulp.src('./**/*.js')
   .pipe(jshint())
-})
+});
 
 /**
 * Istanbul + Mocha tests
 */
 gulp.task('test', function () {
-  return gulp.src('./server/routes/*.js')
-  // Right there
+  gulp.src('./server/test/test.js')
   .pipe(istanbul({includeUntested: true}))
   .on('finish', function () {
     gulp.src('./server/test/test.js')
@@ -29,6 +28,26 @@ gulp.task('test', function () {
     }));
   });
 });
+
+gulp.task('pre-test', function () {
+  return gulp.src(['./server/**/*.js'])
+    // Covering files
+    .pipe(istanbul())
+    // Force `require` to return covered files
+    .pipe(istanbul.hookRequire());
+});
+
+gulp.task('test', ['pre-test'], function () {
+  return gulp.src(['./server/test/test.js'])
+    .pipe(mocha({reporter: 'spec'}))
+    // Creating the reports after tests ran
+    .pipe(istanbul.writeReports({
+      dir: './public/coverage',
+      reporters: [ 'lcov' ],
+      reportOpts: { dir: './public/coverage'}
+    }))
+});
+
 
 /**
 * Overwrite fresh-installed jsdocConfig
