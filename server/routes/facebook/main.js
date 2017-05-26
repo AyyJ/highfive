@@ -1,5 +1,5 @@
 module.exports = {
-  function receivedMessage(event) {
+  receivedMessage: function (event) {
     var senderID = event.sender.id;
     var recipientID = event.recipient.id;
     var timeOfMessage = event.timestamp;
@@ -29,9 +29,9 @@ module.exports = {
     } else if (messageAttachments) {
       sendTextMessage(senderID, "Message with attachment received");
     }
-  }
+  },
 
-  function sendTextMessage(recipientId, messageText) {
+  sendTextMessage: function(recipientId, messageText) {
     var messageData = {
       recipient: {
         id: recipientId
@@ -42,9 +42,9 @@ module.exports = {
     };
 
     callSendAPI(messageData);
-  }
+  },
 
-  function callSendAPI(messageData) {
+  callSendAPI: function(messageData) {
     request({
       uri: 'https://graph.facebook.com/v2.6/me/messages',
       qs: { access_token: EAAa26bahF3gBAGKMqruIfH3K18dQM2JAPWijZBu7YpgkiZBMSOIP7e2ZAV88b70ODwbGHzUa1suZC2zZAHqN56ZChQe15gCrjcPAxLSq9hwJJZAYV7k5KIVNF7pWZC3qtTSlYWZBPsbuJ584dPntpaPhQWqMUvfLidmbYzI25DluJOQZDZD },
@@ -64,9 +64,9 @@ module.exports = {
         console.error(error);
       }
     });
-  }
+  },
 
-  function sendGenericMessage(recipientId) {
+  sendGenericMessage: function(recipientId) {
     var messageData = {
       recipient: {
         id: recipientId
@@ -112,4 +112,4 @@ module.exports = {
 
     callSendAPI(messageData);
   }
-}
+};
