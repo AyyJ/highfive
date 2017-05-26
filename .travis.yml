@@ -15,9 +15,7 @@ deploy:
   app:
     master: cse112-highfive
     dev: cse112-highfive-staging
-    dev_fix: cse112-highfive-dev
-notifications:
-  slack: cse112-highfive:IwXDKj8qHbdq4dw6GemuC7uL
+    facebook-messenger-integration: cse112-highfive-dev
 addons:
   code_climate:
     repo_token: $CODECLIMATE_TOKEN
@@ -29,4 +27,4 @@ branches:
   only:
   - master
   - dev
-  - dev_fix
+  - facebook-messenger-integration
