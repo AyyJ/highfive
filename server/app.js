@@ -17,6 +17,8 @@ var hello = require('../routes/hello');
 var validPhone = require('../routes/validPhone');
 var formatPhone = require('../routes/formatPhone');
 
+var facebook = require('../routes/facebook/main');
+
 var app = express();
 
 //set that young mongo connection up
@@ -108,6 +110,31 @@ app.get('/webhook', function (req, res) {
     } else {
       res.send('Error, wrong validation token');
     }
+});
+
+
+app.post('/webhook', function (req, res) {
+  var data = req.body;
+
+  // Make sure this is a page subscription
+  if (data.object === 'page') {
+
+    // Iterate over each entry - there may be multiple if batched
+    data.entry.forEach(function(entry) {
+      var pageID = entry.id;
+      var timeOfEvent = entry.time;
+
+      // Iterate over each messaging event
+      entry.messaging.forEach(function(event) {
+        if (event.message) {
+          facebook.receivedMessage(event);
+        } else {
+          console.log("Webhook received unknown event: ", event);
+        }
+      });
+    });
+    res.sendStatus(200);
+  }
 });
 
 // catch 404 and forward to error handler
