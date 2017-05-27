@@ -43,6 +43,7 @@
     "mongodb": "2.2.19",
     "morgan": "^1.8.1",
     "nightwatch": "^0.9.15",
+    "request": "^2.81.0",
     "selenium-download": "^2.0.10",
     "serve-favicon": "^2.4.3",
     "should": "^11.2.1",
