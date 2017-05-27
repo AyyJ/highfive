@@ -16,7 +16,7 @@ var index = require('../routes/index');
 var hello = require('../routes/hello');
 var validPhone = require('../routes/validPhone');
 var formatPhone = require('../routes/formatPhone');
-var https = require('https'),
+var https = require('https');
 var request = require('request');
 
 var app = express();
