@@ -29,7 +29,70 @@ $(document).ready(function(){
 
     $("#appt-list").html(compiledHtml);
     $('.save-btn').click(submitForm);
-    
+
+    /**
+     * @apiDefine AptSuccessFields
+     *
+     * @apiSuccess {String} _id             id of the appointment
+     * @apiSuccess {String} first_name      first name of the appointment holder.
+     * @apiSuccess {String} last_name       last name of the appointment holder.
+     * @apiSuccess {String} phone_number    phone number of the appointment holder
+     * @apiSuccess {String} date            date of the appointment
+     * @apiSuccess {Number} company_id      id of the appointment holder's company
+     * @apiSuccess {String} provider_name   name of service provider company
+     */
+
+    /**
+     * @apiDefine SingleAptSuccessResponse
+     * @apiSuccessExample Success-Response:
+     *      {
+     *          "_id"           :   "12314125"
+     *          "first_name"    :   "John"
+     *          "last_name"     :   "Doe"
+     *          "phone_number"  :   "(012) 345-6789",
+     *          "date"          :   "2016-04-23T18:25:43.511Z",
+     *          "company_id"    :   "12314125",
+     *          "provider_name" :   "Mike Doe DDS"
+     *      }
+     */
+
+    /**
+     * @api {get} /api/appointments/admin/:id   Get All Company Appointments
+     * @apiName GetAppointments
+     * @apiGroup Appointments
+     *
+     * @apiParam {Number} id    Company's unique ID.
+     *
+     * @apiUse AptSuccessFields
+     * @apiSuccessExample Success-Response:
+     *      {
+     *          {
+     *              "_id"           :   "12314124"
+     *              "first_name"    :   "Jane"
+     *              "last_name"     :   "Doe"
+     *              "phone_number"  :   "(987) 654-3210",
+     *              "date"          :   "2016-03-13T11:15:13.111Z",
+     *              "company_id"    :   "12314125",
+     *              "provider_name" :   "Mike Doe DDS"
+     *          },
+     *          {
+     *              "_id"           :   "12314125"
+     *              "first_name"    :   "John"
+     *              "last_name"     :   "Doe"
+     *              "phone_number"  :   "(012) 345-6789",
+     *              "date"          :   "2016-04-23T18:25:43.511Z",
+     *              "company_id"    :   "12314125",
+     *              "provider_name" :   "Mike Doe DDS"
+     *          }
+     *      }
+     *
+     * @apiError AppointNotFound    The id of the appointment was not found.
+     * @apiErrorExample Error-Response:
+     *      {
+     *          "error": "AppointmentNotFound"
+     *      }
+     */ 
+
    /***
      * Makes a get request to display list of appts
      * @param none
@@ -65,6 +128,23 @@ $(document).ready(function(){
         $("#appt-list").html(template(appts));
         document.getElementById("appt-form").reset();
     }
+
+    /**
+     * @api {put} /api/appointments/:id   Update Single Appointment
+     * @apiName UpdateAppointment
+     * @apiGroup Appointments
+     *
+     * @apiParam {Number} id    unique ID of appointment 
+     *
+     * @apiUse AptSuccessFields
+     * @apiUse SingleAptSuccessResponse
+     *
+     * @apiError AlreadyCreated    The appointment was already created
+     * @apiErrorExample Error-Response:
+     *      {
+     *          "err": "Already Created"
+     *      }
+     */ 
 
     /***
      * Makes a post request to update list of appts when adding a new employee
@@ -107,6 +187,22 @@ $(document).ready(function(){
       return newAppt;
     } 
 
+    /**
+     * @api {put} /api/appointments/:id   Delete Single Appointment
+     * @apiName DeleteAppointment
+     * @apiGroup Appointments
+     *
+     * @apiParam {Number} id    unique ID of appointment 
+     *
+     * @apiUse AptSuccessFields
+     * @apiUse SingleAptSuccessResponse
+     *
+     * @apiError CantFind    The appointment could not be found
+     * @apiErrorExample Error-Response:
+     *      {
+     *          "err": "Can't find"
+     *      }
+     */ 
     $(document).on('click','.delete-appt',function(){
       var apptId = $(this).closest('.appt-row').attr('value');
       console.log("delete");
