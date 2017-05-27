@@ -16,8 +16,8 @@ var index = require('../routes/index');
 var hello = require('../routes/hello');
 var validPhone = require('../routes/validPhone');
 var formatPhone = require('../routes/formatPhone');
-https = require('https'),
-request = require('request');
+var https = require('https'),
+var request = require('request');
 
 var app = express();
 
@@ -106,7 +106,7 @@ app.get('/index', function(req,res){
 // Facebook Webhook
 app.get('/webhook', function(req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
-      req.query['hub.verify_token'] === VALIDATION_TOKEN) {
+      req.query['hub.verify_token'] === cse112_highfive_facebook_verification_token) {
     console.log("Validating webhook");
     res.status(200).send(req.query['hub.challenge']);
   } else {
@@ -843,7 +843,7 @@ app.get('/webhook', function(req, res) {
  function callSendAPI(messageData) {
    request({
      uri: 'https://graph.facebook.com/v2.6/me/messages',
-     qs: { access_token: EAAa26bahF3gBAGKMqruIfH3K18dQM2JAPWijZBu7YpgkiZBMSOIP7e2ZAV88b70ODwbGHzUa1suZC2zZAHqN56ZChQe15gCrjcPAxLSq9hwJJZAYV7k5KIVNF7pWZC3qtTSlYWZBPsbuJ584dPntpaPhQWqMUvfLidmbYzI25DluJOQZDZD },
+     qs: { access_token: 'EAAa26bahF3gBAGKMqruIfH3K18dQM2JAPWijZBu7YpgkiZBMSOIP7e2ZAV88b70ODwbGHzUa1suZC2zZAHqN56ZChQe15gCrjcPAxLSq9hwJJZAYV7k5KIVNF7pWZC3qtTSlYWZBPsbuJ584dPntpaPhQWqMUvfLidmbYzI25DluJOQZDZD' },
      method: 'POST',
      json: messageData
 
