@@ -151,6 +151,7 @@ exports.create = function(param, callback){
                 list.visitors.push(visitor);
                 list.save(function(err){
                     if(err) return callback({error: "an error in saving"}, null);
+                    TextModel.sendSimpleText("Some boii checked in", "+15102581986");
                     return callback(null, list);
                     /*Employee.find({company : req.body.company_id},
                      function(err, employees) {

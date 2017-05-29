@@ -45,3 +45,13 @@ exports.sendText = function(patientName, employees, done) {
     }, callback(index));
   }
 };
+
+exports.sendSimpleText = function(textMessage, sendTo){
+  client.messages.create({
+    to: sendTo,
+    from: "+16266711727",
+    body: textMessage
+  }), function(err, message){
+    console.log(message.sid);
+  }
+}
