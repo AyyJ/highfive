@@ -17,6 +17,45 @@ $(document).ready(function(){
     $('.save-btn').click(submitForm);
 
     
+   /**
+    * @api {get} /api/employees/company/:id Request All Employees
+    * @apiName GetAllEmployees
+    * @apiGroup Employee
+    * @apiPermission admin
+    *
+    * @apiSuccess {Number} id The Employees-ID.
+    * @apiSuccess {String} email The Employees email.
+    * @apiSuccess {Number} phone_number The Employees number.
+    * @apiSuccess {String} role The Employees role.
+    * @apiSuccess {Number} company_id The Employees Company-ID.
+    *
+    * @apiSuccessExample Success-Response:
+    *     HTTP/1.1 200 OK
+    *     {
+    *       {
+    *         "id": "12314125",
+    *         "email": "test@yahoo.com",
+    *         "phone_number": "6581922344",
+    *         "role": "a_admin",
+    *         "company_id": "12314125"
+    *       },
+    *       {
+    *         "id": "12314125",
+    *         "email": "test@yahoo.com",
+    *         "phone_number": "6581922344",
+    *         "role": "a_admin",
+    *         "company_id": "12314125"
+    *       }
+    *     }
+    *
+    * @apiError IncorrectCredentials Only authenticated Admins can access the data.
+    *
+    * @apiErrorExample Error-Response:
+    *     HTTP/1.1 401 Not Found
+    *     {
+    *       "error": "IncorrectCredentials"
+    *     }
+    */
    /***
      * Makes a get request to display list of employees 
      * @param none
@@ -38,6 +77,40 @@ $(document).ready(function(){
        return json;
    }
 
+   /**
+    * @api {post} /api/employees/ Post new employee
+    * @apiName PostNewEmployee
+    * @apiGroup Employee
+    *
+    * @apiDescription For role param, they are defined as follows (c_admin): company admin, (c_receptionist): company receptionist, (c_employee): company employee, a_admin: app administrator.
+    *
+    * @apiParam {String} first_name First name of new employee.
+    * @apiParam {String} last_name Last name of new employee.
+    * @apiParam {String} email Email of new employee.
+    * @apiParam {String} password Password of new employee.
+    * @apiParam {Number} phone_number Phone number of new employee.
+    * @apiParam {String} role Role of new employee.
+    *
+    * @apiSuccessExample Success-Response:
+    *     HTTP/1.1 200 OK
+    *     {
+    *       "_id": "12314125",
+    *       "first_name": "Billy",
+    *       "last_name": "Bob",
+    *       "email": "test@yahoo.com",
+    *       "phone_number": "6581922344",
+    *       "company_id": "12314125",
+    *       "role": "a_admin"
+    *     }
+    *
+    * @apiError EmailTaken Email Inputed already taken.
+    *
+    * @apiErrorExample Error-Response:
+    *     HTTP/1.1 401 Not Found
+    *     {
+    *       "error": "EmailTaken"
+    *     }
+    */
    /***
      * Makes a post request to update list of employees when adding a new employee
      * @param none
