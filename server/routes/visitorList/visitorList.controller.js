@@ -151,8 +151,8 @@ exports.create = function(param, callback){
                 list.visitors.push(visitor);
                 list.save(function(err){
                     if(err) return callback({error: "an error in saving"}, null);
-                    var message = first_name + " " + last_name + " checked in and has #: " + phone_number;
-                    TextModel.sendSimpleText(message, "+15102581986");
+                    var message = first_name + " " + last_name + " checked in!";
+                    TextModel.sendSimpleText(message, "+1"+ phone_number);
                     return callback(null, list);
                     /*Employee.find({company : req.body.company_id},
                      function(err, employees) {
