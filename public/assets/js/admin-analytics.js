@@ -259,23 +259,7 @@
                     console.log(err);
                 });
     }
-    function getCompanies() {
-        var json;
-        $.ajax({
-            dataType: 'json',
-            type: 'GET',
-            data: $('#response').serialize(),
-            async: false,
-            url: '/api/companies',
-            success: function(response) {
-                json = response;
-                console.log(response);
-            }
-        });
-        return json;
-    }
-    var companies = getCompanies();
-    var num = companies.length;
+    
     document.getElementById('companyCount').innerHTML = num; 
     // Add an event listener to the 'auth-button'.
     document.getElementById('auth-button').addEventListener('click', authorize);
