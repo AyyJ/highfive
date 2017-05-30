@@ -18,6 +18,7 @@
     "serve-favicon": "~2.4.2",
     "supertest": "^3.0.0",
     "gulp": "^3.9.1",
+    "gulp-apidoc": "^0.17.6",
     "gulp-jsdoc3": "^1.0.1",
     "gulp-jshint": "^2.0.4",
     "gulp-mocha": "^4.3.0",

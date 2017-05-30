@@ -2,7 +2,8 @@ var gulp = require('gulp'),
 jshint = require('gulp-jshint'),
 jsdoc = require('gulp-jsdoc3'),
 mocha = require('gulp-mocha'),
-istanbul = require('gulp-istanbul');
+istanbul = require('gulp-istanbul'),
+apidoc = require('gulp-apidoc');
 
 /**
 * Lint Checker
@@ -46,5 +47,14 @@ gulp.task('jsdoc', function (cb) {
   gulp.src(['README.md', './routes/*.js'], {read: false})
   .pipe(jsdoc(config, cb));
 });
+/**
+ * apiDoc Generation
+ */
+gulp.task('apidoc', function(done){
+   apidoc({
+      src: "./public/assets/native/js/",
+      dest: "public/apidoc/"
+   }, done);
+});
 
-gulp.task('default', ['lint', 'test', 'overwrite', 'jsdoc']);
+gulp.task('default', ['lint', 'test', 'overwrite', 'jsdoc', 'apidoc']);
