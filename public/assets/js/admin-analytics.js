@@ -259,6 +259,42 @@
                     console.log(err);
                 });
     }
+/**
+ * @api {get} /api/appointments/admin/:id   Get All Company Appointments
+ * @apiName GetAppointments
+ * @apiGroup Appointments
+ *
+ * @apiParam {Number} id    Company's unique ID.
+ *
+ * @apiUse AptSuccessFields
+ * @apiSuccessExample Success-Response:
+ *      {
+ *          {
+ *              "_id"           :   "12314124"
+ *              "first_name"    :   "Jane"
+ *              "last_name"     :   "Doe"
+ *              "phone_number"  :   "(987) 654-3210",
+ *              "date"          :   "2016-03-13T11:15:13.111Z",
+ *              "company_id"    :   "12314125",
+ *              "provider_name" :   "Mike Doe DDS"
+ *          },
+ *          {
+ *              "_id"           :   "12314125"
+ *              "first_name"    :   "John"
+ *              "last_name"     :   "Doe"
+ *              "phone_number"  :   "(012) 345-6789",
+ *              "date"          :   "2016-04-23T18:25:43.511Z",
+ *              "company_id"    :   "12314125",
+ *              "provider_name" :   "Mike Doe DDS"
+ *          }
+ *      }
+ *
+ * @apiError AppointNotFound    The id of the appointment was not found.
+ * @apiErrorExample Error-Response:
+ *      {
+ *          "error": "AppointmentNotFound"
+ *      }
+ */ 
     function getCompanies() {
         var json;
         $.ajax({
