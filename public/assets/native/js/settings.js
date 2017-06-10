@@ -25,6 +25,39 @@ $(document).ready(function(){
    $('.update-btn').click(updateEmployeeInfo);
    $("#setting-list").html(compiledHtml);
 
+   /**
+    * @api {get} /api/employees/:id Request Employee
+    * @apiName GetEmployee
+    * @apiGroup Employee
+    *
+    * @apiSuccess {Number} _id The Employees-ID.
+    * @apiSuccess {String} first_name First name of Employee.
+    * @apiSuccess {String} last_name First name of Employee.
+    * @apiSuccess {String} email The Employees email.
+    * @apiSuccess {Number} phone_number The Employees number.
+    * @apiSuccess {Number} company_id The Employees Company-ID.
+    * @apiSuccess {String} role The Employees role.
+    *
+    * @apiSuccessExample Success-Response:
+    *     HTTP/1.1 200 OK
+    *     {
+    *       "_id": "12314125",
+    *       "first_name": "Billy",
+    *       "last_name": "Bobby",
+    *       "email": "test@yahoo.com",
+    *       "phone_number": "6581922344",
+    *       "company_id": "12314125",
+    *       "role": "a_admin",
+    *     }
+    *
+    * @apiError IncorrectCredentials Only authenticated Admins can access the data.
+    *
+    * @apiErrorExample Error-Response:
+    *     HTTP/1.1 401 Not Found
+    *     {
+    *       "error": "IncorrectCredentials"
+    *     }
+    */
    /***
     * Makes a get request to display list of employees
     * @param none
@@ -73,6 +106,36 @@ $(document).ready(function(){
        document.getElementById("settings-form").reset();
    }
 
+   /**
+    * @api {put} /api/employees/ Modify employee info
+    * @apiName PutEmployee
+    * @apiGroup Employee
+    *
+    * @apiDescription All parameters are optional, except ID.
+    *
+    * @apiParam {Number} id ID number of employee.
+    * @apiParam {String} name Name of employee.
+    * @apiParam {String} email Email of employee.
+    * @apiParam {String} password Password of employee.
+    * @apiParam {Number} phone_number Phone number of employee.
+    * @apiParam {String} role Role of employee.
+    *
+    * @apiSuccessExample Success-Response:
+    *     HTTP/1.1 200 OK
+    *     {
+    *       "id": "12314125",
+    *       "email": "test@yahoo.com",
+    *       "phone_number": "6581922344",
+    *       "role": "a_admin",
+    *       "company_id": "12314125",
+    *     }
+    *
+    * @apiErrorExample Error-Response:
+    *     HTTP/1.1 401 Not Found
+    *     {
+    *       "error": "Incorrect credentials"
+    *     }
+    */
    /***
     * Makes a put request to update info of employee
     * @param obj
