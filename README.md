@@ -1,3 +1,4 @@
+https://codeclimate.com/repos/5924e95d804b6c0267000c85/badges
 # HighFive Documentation Portal
 
 Welcome to the HighFive Documentation Portal. Here you can find all the documentation for our functions written for Spring 2017 CSE 112.
