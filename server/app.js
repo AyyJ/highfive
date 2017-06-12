@@ -100,6 +100,10 @@ app.get('/admin-settings', function(req,res){
 app.get('/index', function(req,res){
   res.sendFile(path.join(__dirname,'../public/assets/views/index.html'))
 });   
+//Smooch testing
+app.post('/messages', function(req, res){
+	console.log(JSON.stringify(req.body));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
