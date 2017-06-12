@@ -36,6 +36,7 @@ $(document).ready(function(){
         var data = grabFormElements();
         var text = "Name: " + data['first_name'] + " " + data['last_name'] + " Phone Number: " + data['phone_number'];
         var url = localStorage.getItem('hookURL');
+        //Sends slack notification
         $.ajax({
             data: 'payload=' + JSON.stringify({
                 "text": text,

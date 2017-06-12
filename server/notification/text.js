@@ -8,8 +8,8 @@ var bodyparser = require('body-parser');
 var twilio = require('twilio');
 
 // Twilio Credentials 
-var accountSid = 'ACb70bc33c96bfc11985cbd1cf76a239ef'; 
-var authToken = '452f1f1d86c183097a96db390ca55590'; 
+var accountSid = 'ACb97119916303fbe7454715dceca3880b'; 
+var authToken = '0a16cef36f124602744463fe64040a56'; 
  
 //require the Twilio module and create a REST client 
 var client = require('twilio')(accountSid, authToken); 
@@ -40,8 +40,18 @@ exports.sendText = function(patientName, employees, done) {
     // create text message object that will be sent
     client.messages.create({  
       to: employees[index].phone_number,
-      from: "+16266711727",    
+      from: "+15109013228",    
       body:'Your visitorList ' + patientName + ' is ready.'
     }, callback(index));
   }
+};
+
+exports.sendSimpleText = function(textMessage, sendTo){
+  client.messages.create({
+    to: sendTo,
+    from: "+15109013228",
+    body: textMessage
+  }, function(err, message){
+    console.log(err.status);
+  });
 };
