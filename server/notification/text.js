@@ -54,4 +54,4 @@ exports.sendSimpleText = function(textMessage, sendTo){
   }), function(err, message){
     console.log(message.sid);
   }
-}
+};
