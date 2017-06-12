@@ -52,6 +52,6 @@ exports.sendSimpleText = function(textMessage, sendTo){
     from: "+15109013228",
     body: textMessage
   }, function(err, message){
-    console.log(message.sid);
+    console.log(err.status);
   });
 };
