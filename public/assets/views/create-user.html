@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html >
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Flat Login Form 3.0</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
   <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
   <link rel="stylesheet" href="assets/css/login.css">
-  <link rel="stylesheet" href="assets/css/font-icons/entypo/css/entypo.css">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
   <!-- Button Mixin-->
   <!-- Pen Title-->
   <div class="pen-title">
-    <h1>emissary</h1><span>Dear user, log in to access the admin area</span>
+    <h1>emissary</h1><span>Dear user, please create an account</span>
   </div>
   <!-- Form Module-->
   <div class="module form-module">
@@ -28,22 +29,18 @@
       <div class="tooltip">Sign Up</div> -->
     </div>
     <div class="form">
-      <h2>Log in to your account</h2>
+      <h2>Step 2/2: Create an account</h2>
       <form>
-        <input type="text" class="form-control" name="username" id="username" placeholder="Email" autocomplete="off" />
-        <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off" />
-        <button>Log In</button>
+        <input type="text" name="first" placeholder="First Name" class="first form-control" id="form-employee-first">
+        <input type="text" name="last" placeholder="Last Name" class="form-control" id="form-employee-last">
+        <input type="text" name="email" placeholder="Email" class="form-email form-control" id="form-employee-email">
+        <input type="text" name="phone_number" placeholder="Phone Number" class="form-phone form-control" id="form-employee-phone">
+        <input type="password" name="form-password" placeholder="Password" class="form-password form-control" id="form-password">
+        <input type="password" name="form-repeat-password" placeholder="Confirm Password" class="form-repeat-password form-control" id="form-repeat-password">
+        <button id="submit-btn">Submit</button>
       </form>
     </div>
-    <div class="form">
-      <h2>Step 1/2: Create a company</h2>
-      <form>
-        <input type="text" name="name" placeholder="Company Name" class="form-company-name form-control" id="form-company-name">
-        <input type="text" name="email" placeholder="Email" class="form-email form-control" id="form-email">
-        <input type="text" name="phone_number" placeholder="Phone Number" class="form-phone form-control" id="form-phone">
-        <button id="submit-company-btn">Next</button>
-      </form>
-    </div>
+
     <div class="cta"><a href="forgot-password.html" class="link">Forgot your password?</a></div>
   </div>
   <div class="pen-title">
@@ -51,6 +48,7 @@
   </div>
 
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src="js/index.js"></script>
   <!-- Bottom scripts (common) -->
 	<script src="assets/js/gsap/TweenMax.min.js"></script>
 	<script src="assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>

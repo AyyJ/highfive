@@ -39,35 +39,6 @@ hr{
 .remove-box{
 
 }
-/*
-.form-group{
-	width: 50%;
-	max-width: 400px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-
-.my-form input{
-	width: 60%;
-}
-.add-form-text{
-	width: 50%;
-	max-width: 400px;
-	margin: 25px auto;
-
-}
-
-.add-fields{
-	width: 50%;
-	max-width: 400px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.save-form{
-	margin-top: 25px;
-}*/
 .form-group{
 	width: 100%;
 }

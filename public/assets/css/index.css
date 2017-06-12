@@ -1,0 +1,7 @@
+.btn-border {
+  border: 2px solid #31ecd6;
+  border-radius: 5px;
+}
+.btn-border:hover {
+  border: 2px solid red;
+}

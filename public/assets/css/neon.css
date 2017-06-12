@@ -138,8 +138,11 @@ body .carousel-inner > .active {
   width: 100%;
 }
 .site-header-container {
-  position: relative;
+  position: fixed;
   z-index: 110;
+  top: 0%;
+  left: 10%;
+  background-color: white;
 }
 .site-header {
   display: table;
@@ -151,8 +154,8 @@ body .carousel-inner > .active {
   display: table-cell;
   position: relative;
   vertical-align: middle;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .site-header .site-logo a {
   display: inline-block;
