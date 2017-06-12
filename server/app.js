@@ -116,6 +116,7 @@ app.get('/index', function(req,res){
 app.post('/messages', function(req, res){
 	console.log('webhook PAYLOAD:\n', JSON.stringify(req.body, null, 4));
 
+  const appUserId = req.body.appUser._id;
   if (req.body.trigger === 'message:appUser') {
     smooch.appUsers.sendMessage(appUserId, {
       type: 'text',
