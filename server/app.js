@@ -54,6 +54,18 @@ if(app.get('env') !== 'development'){
   app.use('/api/*', validate);
 }
 
+//Smooch parameters
+const Smooch = require('smooch-core');
+const KEY_ID = 'app_593f1cc81d2c082d00e98d45';
+const SECRET = 'MwxBQOtHYoc06nyifOba2FCS';
+
+const smooch = new Smooch({
+    keyId: KEY_ID,
+    secret: SECRET,
+    scope: 'app'
+});
+
+
 //Emissary files
 app.get('/settings', function(req,res){
   res.sendFile(path.join(__dirname,'../public/assets/views/settings.html'))
@@ -100,6 +112,25 @@ app.get('/admin-settings', function(req,res){
 app.get('/index', function(req,res){
   res.sendFile(path.join(__dirname,'../public/assets/views/index.html'))
 });   
+//Smooch testing
+app.post('/messages', function(req, res){
+	console.log('webhook PAYLOAD:\n', JSON.stringify(req.body, null, 4));
+
+  const appUserId = req.body.appUser._id;
+  if (req.body.trigger === 'message:appUser') {
+    smooch.appUsers.sendMessage(appUserId, {
+      type: 'text',
+      text: 'I don\'t have time for this bullshit',
+      role: 'appMaker'
+    }).then((response) => {
+      console.log('API RESPONSE:\n', response);
+      res.end();
+    }).catch((err) => {
+      console.log('API ERROR:\n', err);
+      res.end();
+    });
+  }
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

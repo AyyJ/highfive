@@ -2,11 +2,11 @@ language: node_js
 node_js:
   - '6'
 before_script:
-  - npm install -g nightwatch gulp
+  # - npm install -g nightwatch gulp
   - DEBUG=highfive:* npm start &
-script:
-  - gulp
-  - nightwatch --config nightwatch.js -e chrome,ie11
+# script:
+#   - gulp
+#   - nightwatch --config nightwatch.js -e chrome,ie11
 deploy:
   skip_cleanup: true
   provider: heroku
