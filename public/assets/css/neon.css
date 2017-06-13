@@ -140,14 +140,15 @@ body .carousel-inner > .active {
 .site-header-container {
   position: fixed;
   z-index: 110;
-  top: 0%;
-  left: 10%;
-  background-color: white;
+  background-color: #24afa9;
+  overflow:auto;
+  width: 70%;
+  margin-bottom: 50%;
+  
 }
 .site-header {
   display: table;
   width: 100%;
-  position: relative;
 }
 .site-header .site-nav,
 .site-header .site-logo {
@@ -159,6 +160,7 @@ body .carousel-inner > .active {
 }
 .site-header .site-logo a {
   display: inline-block;
+  margin-left: 25%;
 }
 .site-header .site-nav .selectnav {
   width: 100%;
@@ -224,16 +226,15 @@ body .carousel-inner > .active {
   position: relative;
   display: inline-block;
   z-index: 2;
-  border: 1px solid transparent;
-  border-bottom: 1px solid #fff;
   padding: 10px 10px;
-  background: #fff;
   -webkit-border-radius: 4px 4px 0 0;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 4px 4px 0 0;
   -moz-background-clip: padding;
   border-radius: 4px 4px 0 0;
   background-clip: padding-box;
+  background: #24afa9;
+  color: white;
 }
 .site-header .site-nav .main-menu > li > a span:after {
   display: block;
@@ -259,7 +260,7 @@ body .carousel-inner > .active {
   padding-left: 5px;
 }
 .site-header .site-nav .main-menu > li.has-sub.hover > a {
-  border-color: #f2f2f2;
+  border-color: #ffffff;
   border-bottom-color: #fff;
 }
 .site-header .site-nav .main-menu > li:hover {
@@ -267,10 +268,8 @@ body .carousel-inner > .active {
 }
 .site-header .site-nav .main-menu > li.active > a {
   display: inline-block;
-  color: #ff4e50;
 }
 .site-header .site-nav .main-menu > li.active > a > span:after {
-  background: rgba(255, 78, 80, 0.7);
 }
 .site-header .site-nav .main-menu > li.search {
   z-index: 10;
@@ -413,6 +412,7 @@ body .carousel-inner > .active {
   -moz-background-clip: padding;
   border-radius: 0 4px 4px 4px;
   background-clip: padding-box;
+  
 }
 .site-header .site-nav .main-menu > li > ul > li {
   border-bottom: 1px solid #f2f2f2;
@@ -437,7 +437,10 @@ body .carousel-inner > .active {
   background: #efefef;
 }
 .site-header .site-nav .main-menu > li > ul > li > ul > li > ul > li > a {
-  border-bottom: 1px solid #e5e5e5;
+}
+.site-header .site-nav .main-menu > li > ul > li > ul > li > ul > li > a:hover{
+  border: 1px solid white;
+  border-radius: 5px;
 }
 .site-header .site-nav .main-menu > li > ul > li > ul > li > ul > li:last-child > a {
   border-bottom: 0;
@@ -1785,11 +1788,30 @@ section.blog .sidebar .sidebar-content .discussion-list li .details p {
   font-size: 12px;
   margin-top: 5px;
 }
+.mainmargin-container {
+	background: #F1F5F7 no-repeat center center;
+}
+
+.btn-border {
+  border: 2px solid white;
+  border-radius: 5px;
+  background: white;
+	
+}
+
+.btn-border:hover {
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.maincontent-container {
+	margin: 0 auto;
+	border: 0;
+	width: 70%;
+	background: white no-repeat center center;
+}
+.s
 .slider-container {
   background: #303641 no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
   margin-bottom: 40px;
 }
 .slider-container .slides {
@@ -1798,7 +1820,6 @@ section.blog .sidebar .sidebar-content .discussion-list li .details p {
 .slider-container .slides .slide {
   display: none;
   min-height: 335px;
-  width: 100%;
 }
 .slider-container .slides .slide.active {
   display: table;
@@ -1807,7 +1828,6 @@ section.blog .sidebar .sidebar-content .discussion-list li .details p {
 .slider-container .slides .slide .slide-image {
   display: table-cell;
   vertical-align: middle;
-  width: 50%;
 }
 .slider-container .slides .slide .slide-content {
   color: #fff;
@@ -1861,10 +1881,10 @@ section.blog .sidebar .sidebar-content .discussion-list li .details p {
   font-size: 22.5px;
   margin-top: -22.5px;
   zoom: 1;
-  -webkit-opacity: 0.3;
-  -moz-opacity: 0.3;
-  opacity: 0.3;
-  filter: alpha(opacity=30);
+  -webkit-opacity: 0.7;
+  -moz-opacity: 0.7;
+  opacity: 0.7;
+  filter: alpha(opacity=70);
   -moz-box-shadow: 0 0 0 1px #9298a1;
   -webkit-box-shadow: 0 0 0 1px #9298a1;
   box-shadow: 0 0 0 1px #9298a1;
