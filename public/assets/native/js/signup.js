@@ -10,7 +10,6 @@ $(document).ready(function(){
         var employeeData = grabEmployeeData();
         console.log(employeeData);
         ajaxPost('/api/employees',employeeData);
-        location.href = '/create-user';
     });
 
     //Listener for creating a company

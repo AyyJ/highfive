@@ -2,6 +2,7 @@
  * Created by bchoi on 3/3/16.
  */
 window.onload = function() {
+  console.log("Loaded googleAnalytics.js");
     var buttonElm = document.getElementById("loginButton");
     // attach the onlclick listener to the button
     buttonElm.addEventListener("click", function() {
