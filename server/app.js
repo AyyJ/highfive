@@ -118,17 +118,18 @@ app.post('/messages', function(req, res){
 
   const appUserId = req.body.appUser._id;
   if (req.body.trigger === 'message:appUser') {
-    smooch.appUsers.sendMessage(appUserId, {
-      type: 'text',
-      text: 'I don\'t have time for this bullshit',
-      role: 'appMaker'
-    }).then((response) => {
-      console.log('API RESPONSE:\n', response);
-      res.end();
-    }).catch((err) => {
-      console.log('API ERROR:\n', err);
-      res.end();
-    });
+    // smooch.appUsers.sendMessage(appUserId, {
+    //   type: 'text',
+    //   text: 'I don\'t have time for this bullshit',
+    //   role: 'appMaker'
+    // }).then((response) => {
+    //   console.log('API RESPONSE:\n', response);
+    //   res.end();
+    // }).catch((err) => {
+    //   console.log('API ERROR:\n', err);
+    //   res.end();
+    // });
+    res.end();
   }
 });
 
