@@ -16,6 +16,9 @@
  * when front end is served from a something other than our app server.
  */
 var Appointment = require('../../models/Appointment');
+var Company = require('../../models/Company');
+var schedule = require('node-schedule');
+var smooch = require('../../notification/smooch');
 
 /****** Company TEMPLATE ROUTES ******/
 module.exports.template = {};
@@ -32,6 +35,14 @@ module.exports.template.create = function(req, res) {
     appointment.company_id = param.company_id;
     appointment.provider_name = param.provider_name;
 
+    var relatedCompany = Company.findOne({_id: req.params.id}, function(err, company) {
+        if(err){
+            console.log('couldn\'t find related company while making appt');
+            return;
+        }
+        return company;
+    });
+
     Appointment.find(
         {
             company_id:param.company_id,
@@ -42,6 +53,8 @@ module.exports.template.create = function(req, res) {
                 appointment.save(function (err, a) {
                     if (err)
                         return res.status(400).json({error: "Could Not Save"});
+                    console.log('sending message');
+                    smooch.sendMessage(genMessage(appointment,1), relatedCompany.email);
                     return res.status(200).json(a);
                 });
             }else{
@@ -108,3 +121,51 @@ module.exports.template.delete = function(req, res){
         });
     });
 };
+
+//Check which appointments are about to happen, send reminder
+var job = schedule.scheduleJob('* * * * *', function(){
+    console.log('Starting next cronjob...');
+    sendReminders();
+});
+
+var sendReminders = function(){
+    var message = '';
+
+    Appointment.find({}, function(err, result){
+        if(err){
+            return;
+        }
+        console.log(result.length);
+        result.forEach(function(item){
+            var year = item.date.getFullYear();
+            var month = item.date.getMonth();
+            var day = item.date.getDate();
+            var currDate = new Date();
+            if(year == currDate.getFullYear() && month == currDate.getMonth() && day == currDate.getDate()){
+                var relatedCompany = Company.findOne({_id: item.company_id}, function(err, company) {
+                    if(err)
+                        return;
+                    return company;
+                });
+                console.log('sending reminder');
+                smooch.sendMessage(genMessage(item, 0), relatedCompany.email);
+            }
+        });
+    });
+}
+
+var genMessage = function(item, code){
+    var message ="";
+    switch(code){
+        case 0:
+            message = "Your appointment with "+item.first_name+" "+item.last_name+" is happening today!";
+            break;
+        case 1:
+            message = 'You made an appointment with '+item.first_name+" "+item.last_name+"!";
+            break;
+        default:
+            message = "I don't know what I'm sending, or why!";
+    }
+
+    return message;
+}

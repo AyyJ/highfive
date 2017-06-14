@@ -18,6 +18,8 @@ var config = require('../../config/config');
  * when front end is served from a something other than our app server.
  */
 var Company = require('../../models/Company');
+var smooch = require('../../notification/smooch');
+
 var jwt = require('jwt-simple');
 
 /****** Company TEMPLATE ROUTES ******/
@@ -41,8 +43,9 @@ module.exports.template.create = function(req, res) {
 
     company.save(function(err, c) {
         if(err) {
-            return res.status(400).json({error: "Could Not Save"});
+            return res.status(400).json({error: err});
         }
+        smooch.createSmoochUser(company.name, "", company.email, company.phone_number);
         return res.status(200).json(showCompanyPublicInfo(c));
     });
 };
