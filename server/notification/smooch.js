@@ -40,13 +40,19 @@ exports.createSmoochUser = function(name, surname, email, phoneNumber){
 	}).then((response) => {
 		smooch.appUsers.linkChannel(email, {
 			type: 'twilio',
-			phoneNumber: "+1"+phoneNumber		
+			phoneNumber: "+1"+phoneNumber,
+			confirmation: {
+				type: 'prompt'
+			}		
 		});
 		smooch.appUsers.linkChannel(email, {
 			type: 'messenger',
 			givenName: name,
 			surname: surname,
-			phoneNumber: "+1"+phoneNumber
+			phoneNumber: "+1"+phoneNumber,
+			confirmation: {
+				type: 'immediate'
+			}
 		});	
 	});
 }
