@@ -123,7 +123,7 @@ module.exports.template.delete = function(req, res){
 };
 
 //Check which appointments are about to happen, send reminder
-var job = schedule.scheduleJob('* * * *', function(){
+var job = schedule.scheduleJob('0 * * * *', function(){
     console.log('Starting next cronjob...');
     sendReminders();
 });
