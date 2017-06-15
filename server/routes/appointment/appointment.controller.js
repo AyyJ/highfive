@@ -143,16 +143,12 @@ var sendReminders = function(){
             console.log("Appointment date: "+year+"-"+month+"-"+day);
             console.log("Actual date: "+currDate.getFullYear()+"-"+currDate.getMonth()+"-"+currDate.getDate());
             if(year == currDate.getFullYear() && month == currDate.getMonth() && day == currDate.getDate()){
-                var relatedCompany = "";
                 Company.findOne({_id: item.company_id}, function(err, company) {
                     if(err)
                         return;
-                    console.log(company.email);
-                    relatedCompany = company;
-                });
-                console.log(relatedCompany.email);
-                console.log('sending reminder');
-                smooch.sendMessage(genMessage(item, 0), relatedCompany.email);
+                    console.log('sending reminder');
+                    smooch.sendMessage(genMessage(item, 0), company.email);
+                });            
             }
         });
     });
