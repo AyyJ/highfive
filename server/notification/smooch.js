@@ -13,7 +13,7 @@ const smooch = new Smooch({
 });
 
 exports.sendMessage = function(message, appUserId){
-	if(!appUserId){
+	if(appUserId == ""){
 		console.log('No app user ID, exiting....');
 		return;
 	}
