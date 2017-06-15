@@ -89,6 +89,69 @@ $(document).ready(function(){
         $('.modal-dialog').html(compiledTemplate);
     });
 
+   /**
+    * @api {delete} /api/visitorLists/company/:company_id/visitor/:visitor_id Delete Visitor from VisList
+    * @apiName DeleteVisitor
+    * @apiGroup Visitor
+    * @apiPermission admin
+    *
+    * @apiDescription Store additional field info not including name and phone_number, in the field additional_info as dictionary type{}
+    *
+    * @apiParam {Number} id The visitorId
+    *
+    * @apiSuccess {Number} _id The Appointment-ID.
+    * @apiSuccess {Number} id The Visitor-ID.
+    * @apiSuccess {String} first_name The first name of the visitor.
+    * @apiSuccess {String} last_name The last name of visitor.
+    * @apiSuccess {String} phone_number The person's number.
+    * @apiSuccess {Date} checkin_time Date visitor checked in.
+    * @apiSuccess {ObjectId} company_id Company-ID for company that created appt.
+    * @apiSuccess {Appointment} appointments A appointment object.
+    * @apiSuccess {Dictionary} additional_info 'Dictionary' for optional fields.
+    *
+    *
+    * @apiSuccessExample Success-Response:
+    *     HTTP/1.1 200 OK
+    *     {
+    *       "_id": "123124124",
+    *       "company_id": "12312355",
+    *       "visitors":
+    *        [
+    *                 {
+    *                   "id": "12314125",
+    *                   "company_id": "12314125",
+    *                   "first_name" : "test",
+    *                   "last_name" : "test",
+    *                   "phone_number": "21324125",
+    *                   "checkin_time": "2016-04-23T18:25:43.511Z",
+    *                   "appointments":
+    *                   [
+    *                           {
+    *                                   "_id" : "12314125",
+    *                                   "name" : "test1",
+    *                                   "phone_number" : "0123456789",
+    *                                   "date" : "2016-04-23T18:25:43.511Z",
+    *                                   "company_id" : "23424125",
+    *                                   "provider_name" : "test test"
+    *                           }
+    *                   ]
+    *                   "additional_info":
+    *                           {
+    *                                   "allergies": "peanuts",
+    *                                   "sex": "male"
+    *                           }
+    *                }
+    *        ]
+    *     }
+    *
+    * @apiError NotFound Could not find VisitorList in question.
+    *
+    * @apiErrorExample Error-Response:
+    *     HTTP/1.1 401 Not Found
+    *     {
+    *       "error": "Can't find visitor List"
+    *     }
+    */
     /***
      * Listener for Checking out a Visitor
      */
