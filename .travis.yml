@@ -15,16 +15,17 @@ deploy:
   app:
     master: cse112-highfive
     dev: cse112-highfive-staging
-notifications:
-  slack: cse112-highfive:IwXDKj8qHbdq4dw6GemuC7uL
-addons:
-  code_climate:
-    repo_token: $CODECLIMATE_TOKEN
-  sauce_connect: true
-after_success:
-  - npm install -g codeclimate-test-reporter
-  - codeclimate-test-reporter < ./public/coverage/lcov.info
-branches:
-  only:
-  - master
-  - dev
+    dashboard2: cse112-highfive-dev
+#notifications:
+#  slack: cse112-highfive:IwXDKj8qHbdq4dw6GemuC7uL
+#addons:
+#  code_climate:
+#    repo_token: $CODECLIMATE_TOKEN
+#  sauce_connect: true
+#after_success:
+#  - npm install -g codeclimate-test-reporter
+#  - codeclimate-test-reporter < ./public/coverage/lcov.info
+#branches:
+#  only:
+#  - master
+#  - dev
