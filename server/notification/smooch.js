@@ -74,7 +74,7 @@ exports.updateSmoochUser = function(name, surname, email, phoneNumber){
 	});
 }
 
-//Check which appointments are about to happen, send reminder
+//Check which appointments are about to happen once an hour, send reminder
 var job = schedule.scheduleJob('0 * * * *', function(){
     console.log('Starting next cronjob...');
     sendReminders();
@@ -117,6 +117,7 @@ exports.notifyEmployees = function(companyId, message){
             return;
         }
         employees.forEach(function(employee){
+        	console.log('notifying '+employee.first_name);
             sendMessage(message, employee.email);
         });
     });
