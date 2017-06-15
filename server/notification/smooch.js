@@ -18,12 +18,6 @@ exports.sendMessage = function(message, appUserId){
 		return;
 	}
 
-	smooch.appUsers.get(appUserId).then((response) => {
-		console.log(response);
-	}).catch((err) => {
-		console.log('API ERROR:\n', 'Cannot grab user');
-	});
-
 	smooch.appUsers.sendMessage(appUserId, {
 		type: 'text',
 		text: message,
