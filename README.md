@@ -10,4 +10,4 @@ To find the documentation for a method, use the top navigation bar and select th
     * This project is show a proof of concept for HighFive's conveyor belt. It contains a few functions to verify the validity of a US phone number
 
 ### Functions for Final Project(Echelon) with Documentation:
-  * TODO???
+  * All other functions besides isValidPhone is relevent to Echelon.
