@@ -23,22 +23,32 @@ exports.sendMessage = function(message, appUserId){
 
 exports.createSmoochUser = function(name, surname, email, phoneNumber){
 	var allClear = "Hello "+name+" "+surname+"! Echelon will contact you with important info through here, welcome!";
+	var uniqueId = email;
+	if(email == ""){
+		uniqueId = phoneNumber;
+	}
 
-	smooch.appUsers.create(email, {
+	smooch.appUsers.create(uniqueId, {
 		givenName: name,
 		surname: surname,
 		email: email
 	}).then((response) => {
-		smooch.appUsers.linkChannel(email, {
+		//Link twilio for SMS
+		smooch.appUsers.linkChannel(uniqueId, {
 			type: 'twilio',
 			phoneNumber: "+1"+phoneNumber,
 			confirmation: {
 				type: 'immediate'
-			}		
+		}		
 		}).then((response) => {
-			localSendMessage(allClear, email);
+			console.log('Linked to twilio');
+			localSendMessage(allClear, uniqueId);
+		}).catch((err) => {
+			console.log('CANNOT LINK TWILIO:',err);
 		});
-		smooch.appUsers.linkChannel(email, {
+
+		//Link fb messenger
+		smooch.appUsers.linkChannel(uniqueId, {
 			type: 'messenger',
 			givenName: name,
 			surname: surname,
@@ -48,16 +58,47 @@ exports.createSmoochUser = function(name, surname, email, phoneNumber){
 			}
 		}).then((response) => {
 			console.log("linked to messenger");
+		}).catch((err) => {
+			console.log('CANNOT LINK MESSENGER:',err);
 		});	
+
+		//Link mailgun
+		smooch.appUsers.linkChannel(uniqueId, {
+			type: 'mailgun',
+			address: email,
+			confirmation: {
+				type: 'immediate'
+			},
+			subject: 'Welcome to smooch!'
+		}).then((response) => {
+			console.log("linked to mailgun");
+		}).catch((err) => {
+			console.log('CANNOT LINK MAILGUN:', err);
+		});
+	}).catch((err) => {
+		console.log('ACCOUNT CREATION ERROR: ', err);
 	});
 }
 
 exports.updateSmoochUser = function(name, surname, email, phoneNumber){
-	smooch.appUsers.update(email, {
+	var uniqueId = email;
+	if(email == ""){
+		uniqueId = phoneNumber;
+	}
+
+	smooch.appUsers.update(uniqueId, {
 		givenName: name,
 		surname: surname,
 		email: email,
 		phoneNumber: phoneNumber
+	});
+}
+
+exports.deleteSmoochUser = function(uniqueId){
+	smooch.appUsers.deleteProfile(uniqueId).then((response) => {
+		console.log('smooch user '+uniqueId+' deleted!');
+	}).catch((err) => {
+		console.log('DELETION ERROR: ', err);
 	});
 }
 
@@ -80,16 +121,23 @@ var sendReminders = function(){
             var day = item.date.getDate();
             var hour = item.date.getHours();
             var currDate = new Date();
-            console.log("Appointment date: "+year+"-"+month+"-"+day);
-            console.log("Actual date: "+currDate.getFullYear()+"-"+currDate.getMonth()+"-"+currDate.getDate());
+            // console.log("Appointment date: "+year+"-"+month+"-"+day);
+            // console.log("Actual date: "+currDate.getFullYear()+"-"+currDate.getMonth()+"-"+currDate.getDate());
             if(year == currDate.getFullYear() && month == currDate.getMonth() && day == currDate.getDate()){
+            	//Notify client
                 Company.findOne({_id: item.company_id}, function(err, company) {
                     if(err)
                         return;
                     if(currDate.getHours() == 0){
+                    	if(item.notify){
+                        	localSendMessage(genMessage(item, 3), item.phone_number);
+                        }
                         notifyEmployees(genMessage(item, 0), company.id);
                     }
                     if(hour == currDate.getHours() + 1){
+                    	if(item.notify){
+                        	localSendMessage(genMessage(item, 4), item.phone_number);
+                        }
                         notifyEmployees(genMessage(item, 2), company.id);
                     }
                 });            
@@ -113,16 +161,24 @@ exports.notifyEmployees = function(companyId, message){
 
 var genMessage = function(item, code){
     var message ="";
+    var patientName = item.first_name+" "+item.last_name;
+
     switch(code){
         case 0:
-            message = "Your appointment with "+item.first_name+" "+item.last_name+" is happening today!";
+            message = "Your appointment with "+patientName+" is happening today!";
             break;
         case 1:
-            message = 'You made an appointment with '+item.first_name+" "+item.last_name+"!";
+            message = 'You made an appointment with '+patientName+'!';
             break;
         case 2:
-            message = 'Your appointment with '+item.first_name+" "+item.last_name+" is happening in an hour!";
+            message = 'Your appointment with '+patientName+" is happening in an hour!";
             break;
+        case 3:
+        	message = 'Your appointment with '+item.provider_name+' is happening today!';
+        	break;
+        case 4:
+        	message = 'Your appointment with '+item.provider_name+' is happening in an hour!';
+        	break;
         default:
             message = "I don't know what I'm sending, or why!";
     }
