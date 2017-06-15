@@ -188,7 +188,7 @@ $(document).ready(function(){
     } 
 
     /**
-     * @api {put} /api/appointments/:id   Delete Single Appointment
+     * @api {delete} /api/appointments/:id   Delete Single Appointment
      * @apiName DeleteAppointment
      * @apiGroup Appointments
      *
