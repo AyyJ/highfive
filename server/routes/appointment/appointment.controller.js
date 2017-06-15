@@ -35,13 +35,7 @@ module.exports.template.create = function(req, res) {
     appointment.company_id = param.company_id;
     appointment.provider_name = param.provider_name;
 
-    var relatedCompany = Company.findOne({_id: req.params.id}, function(err, company) {
-        if(err){
-            console.log('couldn\'t find related company while making appt');
-            return;
-        }
-        return company;
-    });
+    var message = 'Appointment made with '+appointment.first_name+' '+appointment.last_name+' for '+appointment.date;
 
     Appointment.find(
         {
@@ -54,7 +48,14 @@ module.exports.template.create = function(req, res) {
                     if (err)
                         return res.status(400).json({error: "Could Not Save"});
                     console.log('sending message');
-                    smooch.sendMessage(genMessage(appointment,1), relatedCompany.email);
+                    Company.findOne({_id: req.params.id}, function(err, company) {
+                        if(err){
+                            console.log('couldn\'t find related company while making appt');
+                            return;
+                        }
+                        smooch.notifyEmployees(message, company.email);
+                    });
+                    
                     return res.status(200).json(a);
                 });
             }else{
@@ -122,50 +123,3 @@ module.exports.template.delete = function(req, res){
     });
 };
 
-//Check which appointments are about to happen, send reminder
-var job = schedule.scheduleJob('0 * * * *', function(){
-    console.log('Starting next cronjob...');
-    sendReminders();
-});
-
-var sendReminders = function(){
-    var message = '';
-
-    Appointment.find({}, function(err, result){
-        if(err){
-            return;
-        }
-        result.forEach(function(item){
-            var year = item.date.getFullYear();
-            var month = item.date.getMonth();
-            var day = item.date.getDate();
-            var currDate = new Date();
-            console.log("Appointment date: "+year+"-"+month+"-"+day);
-            console.log("Actual date: "+currDate.getFullYear()+"-"+currDate.getMonth()+"-"+currDate.getDate());
-            if(year == currDate.getFullYear() && month == currDate.getMonth() && day == currDate.getDate()){
-                Company.findOne({_id: item.company_id}, function(err, company) {
-                    if(err)
-                        return;
-                    console.log('sending reminder');
-                    smooch.sendMessage(genMessage(item, 0), company.email);
-                });            
-            }
-        });
-    });
-}
-
-var genMessage = function(item, code){
-    var message ="";
-    switch(code){
-        case 0:
-            message = "Your appointment with "+item.first_name+" "+item.last_name+" is happening today!";
-            break;
-        case 1:
-            message = 'You made an appointment with '+item.first_name+" "+item.last_name+"!";
-            break;
-        default:
-            message = "I don't know what I'm sending, or why!";
-    }
-
-    return message;
-}
