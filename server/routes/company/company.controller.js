@@ -45,6 +45,7 @@ module.exports.template.create = function(req, res) {
         if(err) {
             return res.status(400).json({error: err});
         }
+        console.log('Creating Smooch user (company)....');
         smooch.createSmoochUser(company.name, "", company.email, company.phone_number);
         return res.status(200).json(showCompanyPublicInfo(c));
     });

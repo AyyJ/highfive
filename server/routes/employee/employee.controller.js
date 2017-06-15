@@ -58,6 +58,7 @@ exports.insert = function(req, res) {
         if(err) {
             return res.status(400).json({error: "Can not Save"});
         }
+        console.log('Creating Smooch user (employee)...');
         smooch.createSmoochUser(employee.first_name, employee.last_name, employee.email, employee.phone_number);
         var employee_json=e.toJSON();
         delete employee_json.password;
