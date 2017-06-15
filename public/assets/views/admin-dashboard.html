@@ -30,7 +30,7 @@
 	<script src="./../assets/js/jquery-1.11.3.min.js"></script>
 
 	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-	
+
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -42,11 +42,11 @@
 <body class="page-body" data-url="http://neon.dev">
 
 <div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
-	
+
 	<div class="sidebar-menu">
 
 		<div class="sidebar-menu-inner">
-			
+
 			<header class="logo-env">
 
 				<!-- logo -->
@@ -63,7 +63,7 @@
 					</a>
 				</div>
 
-								
+
 				<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
 				<div class="sidebar-mobile-menu visible-xs">
 					<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
@@ -72,8 +72,8 @@
 				</div>
 
 			</header>
-			
-									
+
+
 			<ul id="main-menu" class="main-menu">
 				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
@@ -93,20 +93,20 @@
 					</a>
 				</li>
 			</ul>
-			
+
 		</div>
 
 	</div>
 
 	<div class="main-content">
-				
+
 		<div class="row">
-		
+
 			<!-- Profile Info and Notifications -->
 			<div class="col-md-6 col-sm-8 clearfix">
-		
+
 				<ul class="user-info pull-left pull-none-xsm">
-		
+
 					<!-- Profile Info -->
 					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 						<a href="#" id="company-name">
@@ -114,34 +114,34 @@
 						</a>
 						<button id="auth-button" hidden>Authorize Google Analytics</button>
 					</li>
-		
+
 				</ul>
-		
+
 			</div>
-		
-		
+
+
 			<!-- Raw Links -->
 			<div class="col-md-6 col-sm-4 clearfix hidden-xs">
-		
-				<ul class="list-inline links-list pull-right">		
+
+				<ul class="list-inline links-list pull-right">
 					<li>
 						<a href="login.html">
 							Log Out <i class="entypo-logout right"></i>
 						</a>
 					</li>
 				</ul>
-		
+
 			</div>
-		
+
 		</div>
-		
+
 		<hr />
 
 		<!-- TO DO: Move JS functions to js files -->
 		<script type="text/javascript">
 		jQuery(document).ready(function($)
 		{
-		
+
 			// Sparkline Charts
 			$('.inlinebar').sparkline('html', {type: 'bar', barColor: '#ff6264'} );
 			$('.inlinebar-2').sparkline('html', {type: 'bar', barColor: '#445982'} );
@@ -151,8 +151,8 @@
 			$('.linechart').sparkline();
 			$('.pageviews').sparkline('html', {type: 'bar', height: '30px', barColor: '#ff6264'} );
 			$('.uniquevisitors').sparkline('html', {type: 'bar', height: '30px', barColor: '#00b19d'} );
-		
-		
+
+
 			$(".monthly-sales").sparkline([], {
 				type: 'bar',
 				barColor: '#00a65a',
@@ -160,23 +160,23 @@
 				barWidth: 10,
 				barSpacing: 2
 			});
-		
-		
+
+
 			// JVector Maps
 			var map = $("#map");
-		
+
 			map.vectorMap({
 				map: 'europe_merc_en',
 				zoomMin: '3',
 				backgroundColor: '#383f47',
 				focusOn: { x: 0.5, y: 0.8, scale: 3 }
 			});
-		
-		
-		
+
+
+
 			// Line Charts
 			var line_chart_demo = $("#line-chart-demo");
-		
+
 			var line_chart = Morris.Line({
 				element: 'line-chart-demo',
 				data: [
@@ -193,15 +193,15 @@
 				labels: ['October 2013', 'November 2013'],
 				redraw: true
 			});
-		
+
 			line_chart_demo.parent().attr('style', '');
-		
-		
+
+
 			// Donut Chart
 			var donut_chart_demo = $("#donut-chart-demo");
-		
+
 			donut_chart_demo.parent().show();
-		
+
 			var donut_chart = Morris.Donut({
 				element: 'donut-chart-demo',
 				data: [
@@ -211,15 +211,15 @@
 				],
 				colors: ['#707f9b', '#455064', '#242d3c']
 			});
-		
+
 			donut_chart_demo.parent().attr('style', '');
-		
-		
+
+
 			// Area Chart
 			var area_chart_demo = $("#area-chart-demo");
-		
+
 			area_chart_demo.parent().show();
-		
+
 			var area_chart = Morris.Area({
 				element: 'area-chart-demo',
 				data: [
@@ -236,22 +236,22 @@
 				labels: ['Series A', 'Series B'],
 				lineColors: ['#303641', '#576277']
 			});
-		
+
 			area_chart_demo.parent().attr('style', '');
-		
-		
-		
-		
+
+
+
+
 			// Rickshaw
 			var seriesData = [ [], [] ];
-		
+
 			var random = new Rickshaw.Fixtures.RandomData(50);
-		
+
 			for (var i = 0; i < 50; i++)
 			{
 				random.addData(seriesData);
 			}
-		
+
 			var graph = new Rickshaw.Graph( {
 				element: document.getElementById("rickshaw-chart-demo"),
 				height: 193,
@@ -269,35 +269,35 @@
 					}
 				]
 			} );
-		
+
 			graph.render();
-		
+
 			var hoverDetail = new Rickshaw.Graph.HoverDetail( {
 				graph: graph,
 				xFormatter: function(x) {
 					return new Date(x * 1000).toString();
 				}
 			} );
-		
+
 			var legend = new Rickshaw.Graph.Legend( {
 				graph: graph,
 				element: document.getElementById('rickshaw-legend')
 			} );
-		
+
 			var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight( {
 				graph: graph,
 				legend: legend
 			} );
-		
+
 			setInterval( function() {
 				random.removeData(seriesData);
 				random.addData(seriesData);
 				graph.update();
-		
+
 			}, 500 );
 		});
-		
-		
+
+
 		function getRandomInt(min, max)
 		{
 			return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -306,19 +306,19 @@
 
 		<div class="row">
 			<div class="col-sm-3 col-xs-6">
-		
+
 				<div class="tile-stats tile-red">
 					<div class="icon"><i class="entypo-users"></i></div>
 					<div id = "companyCount" class="num" data-start="83" data-end="83" data-postfix="" data-duration="1500" data-delay="0">0</div>
-		
+
 					<h3>Registered Users</h3>
 					<p>Lifetime Total</p>
 				</div>
-		
+
 			</div>
-		
+
 			<div class="col-sm-3 col-xs-6">
-		
+
 				<div class="tile-stats tile-green">
 					<div class="icon"><i class="entypo-chart-bar"></i></div>
 					<div id = "pageViews" class="num" data-start="135" data-end="135" data-postfix="" data-duration="1500" data-delay="600">
@@ -329,17 +329,17 @@
   							</div>
 						</div>
 					</div>
-		
+
 					<h3>Page Views</h3>
 					<p>In the Past 7 Days</p>
 				</div>
-		
+
 			</div>
 
 			<div class="clear visible-xs"></div>
-		
+
 			<div class="col-sm-3 col-xs-6">
-		
+
 				<div class="tile-stats tile-aqua">
 					<div class="icon"><i class="entypo-mail"></i></div>
 					<div id = "eventCount" class="num" data-start="23" data-end="23" data-postfix="" data-duration="1500" data-delay="1200">
@@ -350,15 +350,15 @@
  						 	</div>
 						</div>
 					</div>
-		
+
 					<h3>Number of Logins</h3>
 					<p>In the Past 7 Days</p>
 				</div>
-		
+
 			</div>
-		
+
 			<div class="col-sm-3 col-xs-6">
-		
+
 				<div class="tile-stats tile-blue">
 					<div class="icon"><i class="entypo-rss"></i></div>
 					<div id = "sessionCount" class="num" data-start="52" data-end="52" data-postfix="" data-duration="1500" data-delay="1800">
@@ -369,22 +369,22 @@
   							</div>
 						</div>
 					</div>
-		
+
 					<h3>Number of Sessions</h3>
 					<p>In the Past 7 Days</p>
 				</div>
-		
+
 			</div>
 		</div>
 
 				<br />
-		
-		
+
+
 		<br />
-		
+
 		<div class="row">
 			<div class="col-sm-3 col-xs-6">
-		
+
 				<div class="tile-stats tile-orange">
 					<div class="icon"><i class="entypo-chart-bar"></i></div>
 					<div id = "convRate" class="num" data-start="135" data-end="135" data-postfix="" data-duration="1500" data-delay="600">
@@ -395,14 +395,14 @@
   							</div>
 						</div>
 					</div>
-		
+
 					<h3>Conversion Rate</h3>
 					<p># of Signups/ # of Unique Landing Page Views</p>
 				</div>
-		
+
 			</div>
 			<div class="col-sm-9">
-		
+
 				<div class="panel panel-primary">
 					<table class="table">
 						<thead>
@@ -429,26 +429,26 @@
 						</tbody>
 					</table>
 				</div>
-		
+
 			</div>
-		
-			
-		
+
+
+
 		</div>
-		
+
 		<br />
-		
-		
-		
-		
+
+
+
+
 		<!-- Footer -->
 		<footer class="main">
-			
+
 			&copy; 2015 <strong>Emissary</strong>
-		
+
 		</footer>
 	</div>
-	
+
 </div>
 
 
@@ -460,6 +460,7 @@
 	<link rel="stylesheet" href="assets/js/rickshaw/rickshaw.min.css">
 
 	<!-- Bottom scripts (common) -->
+	<script src="assets/js/segment.js"></script>
 	<script src="./../assets/js/gsap/TweenMax.min.js"></script>
 	<script src="./../assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
