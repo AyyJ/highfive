@@ -56,10 +56,10 @@ $(document).ready(function(){
     *       "error": "IncorrectCredentials"
     *     }
     */
-   /***
-     * Makes a get request to display list of employees 
-     * @param none
-     * @returns displays the employee list
+
+    /**
+     * @name getEmployees
+     * @description Makes a get request to display list of employees 
      */
     function getEmployees() {
        var json;
@@ -71,7 +71,6 @@ $(document).ready(function(){
            url: '/api/employees/company/' + myCompanyId,
            success: function(response) {
                json = response;
-               //console.log(response);
            }
        });
        return json;
@@ -111,11 +110,13 @@ $(document).ready(function(){
     *       "error": "EmailTaken"
     *     }
     */
-   /***
-     * Makes a post request to update list of employees when adding a new employee
-     * @param none
-     * @returns updates the employee list
+
+    /**
+     * @name updateEmployeeList
+     * @description Makes a post request to update list of employees when adding a new employee
+     * @param {object} obj
      */
+
    function updateEmployeeList(obj) {
       $.ajax({
         dataType: 'json',
@@ -125,15 +126,13 @@ $(document).ready(function(){
            url: '/api/employees',
            success: function(response) {
                employees.push(response);
-               //console.log(response);
            }
       });
     }
 
-     /***
-     * When a patient submits their form
-     * @param none
-     * @returns updates the employee list
+    /**
+     * @name submitForm
+     * @description When a patient submits their form
      */
     function submitForm(){
         var d = grabFormElements();
@@ -143,12 +142,12 @@ $(document).ready(function(){
         document.getElementById("employee-form").reset();
     }
 
-    /***
-     * Grabs elements from the check in and puts it into an object
-     * @param none
-     * @returns new employee object
+    /**
+     * @name grabFormElements
+     * @description Grabs elements from the check in and puts it into an object
+     * @returns {object} a new employee object
      */
-    function grabFormElements(){
+     function grabFormElements(){
         var newEmployee = {};
         newEmployee.company_id = myCompanyId;
         newEmployee.role = "c_employee",
@@ -161,17 +160,18 @@ $(document).ready(function(){
         return newEmployee;
     }
 
-     /***
-     * Find Specific Employee Given Employee ID within the Employee Array
-     * @param id
-     * @returns {string}
+    /**
+     * @name findEmployee
+     * @description Find Specific Employee Given Employee ID within the Employee Array
+     * @param {string} id of employee
+     * @returns {string} name of employee
      */
     function findEmployee(id){
 
         for(var employee in employeeList) {
            if(employeeList.hasOwnProperty(employee)){
               if(employeeList[employee]._id === id){
-                  if(DEBUG) //console.log(employeeList[employee]);
+                  if(DEBUG)
                   return employeeList[employee];
               }
            }

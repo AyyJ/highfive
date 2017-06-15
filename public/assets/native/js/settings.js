@@ -4,7 +4,6 @@ $(document).ready(function(){
 
    console.log(myCompanyId);
 
-
    var curUser = JSON.parse(localStorage.getItem('currentUser'));
    $('#user-name').text(curUser.first_name + ' ' +  curUser.last_name);
    var employees = getEmployee();
@@ -12,8 +11,6 @@ $(document).ready(function(){
    var source = $("#setting-list-template").html();
    var template = Handlebars.compile(source);
    var compiledHtml = template(employees);
-
-
 
    // Pre-fill in current user information
    document.getElementsByTagName("input")[0].setAttribute("value", curUser.first_name);
@@ -58,7 +55,7 @@ $(document).ready(function(){
     *       "error": "IncorrectCredentials"
     *     }
     */
-   /***
+   /**
     * Makes a get request to display list of employees
     * @param none
     * @returns displays the employee list
@@ -79,7 +76,7 @@ $(document).ready(function(){
        return json;
    }
 
-   /***
+   /**
     * Grabs elements from the check in and puts it into an object
     * @param none
     * @returns new employee object
@@ -93,7 +90,7 @@ $(document).ready(function(){
        return newEmployee;
    }
 
-   /***
+   /**
     * Update the current employee information
     * @param id
     * @returns {string}
@@ -136,10 +133,11 @@ $(document).ready(function(){
     *       "error": "Incorrect credentials"
     *     }
     */
-   /***
-    * Makes a put request to update info of employee
-    * @param obj
-    * @returns updates the employee's information
+
+   /**
+    * @name updateEmployee
+    * @description Makes a put request to update info of employee
+    * @param {obj} - Employee object
     */
    function updateEmployee(obj) {
        $.ajax({
