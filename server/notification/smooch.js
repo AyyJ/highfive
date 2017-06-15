@@ -18,20 +18,7 @@ const smooch = new Smooch({
 });
 
 exports.sendMessage = function(message, appUserId){
-	if(appUserId == ""){
-		console.log('No app user ID, exiting....');
-		return;
-	}
-
-	smooch.appUsers.sendMessage(appUserId, {
-		type: 'text',
-		text: message,
-		role: 'appMaker'
-	}).then((response) => {
-		console.log('API RESPONSE:\n', response);
-	}).catch((err) => {
-		console.log('API ERROR:\n', err);
-	});
+	localSendMessage(message, appUserId);
 }
 
 exports.createSmoochUser = function(name, surname, email, phoneNumber){
@@ -112,13 +99,14 @@ var sendReminders = function(){
 }
 
 exports.notifyEmployees = function(companyId, message){
-    Employee.find({company_id: companyId}, function(err, employees){
+    Employee.find({company_id: companyId}, {password: 0}, function(err, employees){
         if(err){
             return;
         }
+        console.log(employees.length);
         employees.forEach(function(employee){
-        	console.log('notifying '+employee.first_name);
-            sendMessage(message, employee.email);
+        	// console.log('notifying '+employee.first_name);
+            localSendMessage(message, employee.email);
         });
     });
 }
@@ -140,4 +128,21 @@ var genMessage = function(item, code){
     }
 
     return message;
+}
+
+var localSendMessage = function(message, appUserId){
+	if(appUserId == ""){
+		console.log('No app user ID, exiting....');
+		return;
+	}
+
+	smooch.appUsers.sendMessage(appUserId, {
+		type: 'text',
+		text: message,
+		role: 'appMaker'
+	}).then((response) => {
+		console.log('API RESPONSE:\n', response);
+	}).catch((err) => {
+		console.log('API ERROR:\n', err);
+	});
 }

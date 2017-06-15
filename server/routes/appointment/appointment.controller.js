@@ -47,13 +47,14 @@ module.exports.template.create = function(req, res) {
                 appointment.save(function (err, a) {
                     if (err)
                         return res.status(400).json({error: "Could Not Save"});
-                    console.log('sending message');
+                    // console.log('sending message');
                     Company.findOne({_id: appointment.company_id}, function(err, company) {
                         if(err){
                             console.log('couldn\'t find related company while making appt');
                             return;
                         }
-                        smooch.notifyEmployees(message, company.email);
+                        // console.log('notifying employees...');
+                        smooch.notifyEmployees(company._id, message);
                     });
                     
                     return res.status(200).json(a);
