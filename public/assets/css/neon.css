@@ -144,7 +144,7 @@ body .carousel-inner > .active {
   overflow:auto;
   width: 70%;
   margin-bottom: 50%;
-  
+
 }
 .site-header {
   display: table;
@@ -412,7 +412,7 @@ body .carousel-inner > .active {
   -moz-background-clip: padding;
   border-radius: 0 4px 4px 4px;
   background-clip: padding-box;
-  
+
 }
 .site-header .site-nav .main-menu > li > ul > li {
   border-bottom: 1px solid #f2f2f2;
@@ -1796,7 +1796,7 @@ section.blog .sidebar .sidebar-content .discussion-list li .details p {
   border: 2px solid white;
   border-radius: 5px;
   background: white;
-	
+
 }
 
 .btn-border:hover {
@@ -2184,4 +2184,14 @@ section.blog .sidebar .sidebar-content .discussion-list li .details p {
   font-size: 20px;
   width: 36px;
   height: 36px;
+}
+#splash {
+  background: #24afa9;
+}
+#splash h2 {
+  color: #fff;
+    font-weight: bold;
+}
+#splash p {
+  color: #fff;
 }
