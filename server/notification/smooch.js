@@ -24,7 +24,7 @@ exports.sendMessage = function(message, appUserId){
 exports.createSmoochUser = function(name, surname, email, phoneNumber){
 	var allClear = "Hello "+name+" "+surname+"! Echelon will contact you with important info through here, welcome!";
 	var uniqueId = email;
-	if(email == ""){
+	if(email === ""){
 		uniqueId = phoneNumber;
 	}
 
@@ -82,7 +82,7 @@ exports.createSmoochUser = function(name, surname, email, phoneNumber){
 
 exports.updateSmoochUser = function(name, surname, email, phoneNumber){
 	var uniqueId = email;
-	if(email == ""){
+	if(email === ""){
 		uniqueId = phoneNumber;
 	}
 
@@ -123,18 +123,18 @@ var sendReminders = function(){
             var currDate = new Date();
             // console.log("Appointment date: "+year+"-"+month+"-"+day);
             // console.log("Actual date: "+currDate.getFullYear()+"-"+currDate.getMonth()+"-"+currDate.getDate());
-            if(year == currDate.getFullYear() && month == currDate.getMonth() && day == currDate.getDate()){
+            if(year === currDate.getFullYear() && month === currDate.getMonth() && day === currDate.getDate()){
             	//Notify client
                 Company.findOne({_id: item.company_id}, function(err, company) {
                     if(err)
                         return;
-                    if(currDate.getHours() == 0){
+                    if(currDate.getHours() === 0){
                     	if(item.notify){
                         	localSendMessage(genMessage(item, 3), item.phone_number);
                         }
                         notifyEmployees(genMessage(item, 0), company.id);
                     }
-                    if(hour == currDate.getHours() + 1){
+                    if(hour === currDate.getHours() + 1){
                     	if(item.notify){
                         	localSendMessage(genMessage(item, 4), item.phone_number);
                         }
@@ -187,7 +187,7 @@ var genMessage = function(item, code){
 }
 
 var localSendMessage = function(message, appUserId){
-	if(appUserId == ""){
+	if(appUserId === ""){
 		console.log('No app user ID, exiting....');
 		return;
 	}
