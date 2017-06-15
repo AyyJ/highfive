@@ -5,7 +5,7 @@ before_script:
   - npm install -g nightwatch gulp
   - DEBUG=highfive:* npm start &
 script:
-   - gulp
+#   - gulp
    - nightwatch --config nightwatch.js -e chrome,ie11
 deploy:
   skip_cleanup: true
