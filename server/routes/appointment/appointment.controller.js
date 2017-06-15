@@ -48,7 +48,7 @@ module.exports.template.create = function(req, res) {
                     if (err)
                         return res.status(400).json({error: "Could Not Save"});
                     console.log('sending message');
-                    Company.findOne({_id: req.params.id}, function(err, company) {
+                    Company.findOne({_id: appointment.company_id}, function(err, company) {
                         if(err){
                             console.log('couldn\'t find related company while making appt');
                             return;
