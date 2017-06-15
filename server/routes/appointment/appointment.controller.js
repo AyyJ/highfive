@@ -147,6 +147,7 @@ var sendReminders = function(){
                 Company.findOne({_id: item.company_id}, function(err, company) {
                     if(err)
                         return;
+                    console.log(company.email);
                     relatedCompany = company;
                 });
                 console.log(relatedCompany.email);
