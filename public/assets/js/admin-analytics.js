@@ -294,7 +294,7 @@
  *      {
  *          "error": "AppointmentNotFound"
  *      }
- */ 
+ */
     function getCompanies() {
         var json;
         $.ajax({
@@ -312,6 +312,27 @@
     }
     var companies = getCompanies();
     var num = companies.length;
-    document.getElementById('companyCount').innerHTML = num; 
+    document.getElementById('companyCount').innerHTML = num;
+    // Add an event listener to the 'auth-button'.
+    document.getElementById('auth-button').addEventListener('click', authorize);
+
+    function getPageViews() {
+        var json;
+        $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            data: $('#response').serialize(),
+            async: false,
+            url: 'https://api.clicky.com/api/stats/4?site_id=101053825&sitekey=7b46e57ea7fc123d&type=visitors&output=json',
+            success: function(response) {
+                json = response;
+                console.log(response);
+            }
+        });
+        return json;
+    }
+    var views = getPageViews();
+    var num = views.length;
+    document.getElementById('pageViews').innerHTML = num;
     // Add an event listener to the 'auth-button'.
     document.getElementById('auth-button').addEventListener('click', authorize);
