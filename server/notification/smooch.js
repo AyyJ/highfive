@@ -14,6 +14,7 @@ const smooch = new Smooch({
 
 exports.sendMessage = function(message, appUserId){
 	if(!appUserId){
+		console.log('No app user ID, exiting....');
 		return;
 	}
 
@@ -42,8 +43,10 @@ exports.createSmoochUser = function(name, surname, email, phoneNumber){
 			type: 'twilio',
 			phoneNumber: "+1"+phoneNumber,
 			confirmation: {
-				type: 'prompt'
+				type: 'immediate'
 			}		
+		}).then((response) => {
+			console.log("linked to twilio");
 		});
 		smooch.appUsers.linkChannel(email, {
 			type: 'messenger',
@@ -53,6 +56,8 @@ exports.createSmoochUser = function(name, surname, email, phoneNumber){
 			confirmation: {
 				type: 'immediate'
 			}
+		}).then((response) => {
+			console.log("linked to messenger");
 		});	
 	});
 }

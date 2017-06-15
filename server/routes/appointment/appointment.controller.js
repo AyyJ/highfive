@@ -135,12 +135,13 @@ var sendReminders = function(){
         if(err){
             return;
         }
-        console.log(result.length);
         result.forEach(function(item){
             var year = item.date.getFullYear();
             var month = item.date.getMonth();
             var day = item.date.getDate();
             var currDate = new Date();
+            console.log("Appointment date: "+year+"-"+month+"-"+day);
+            console.log("Actual date: "+currDate.getFullYear()+"-"+currDate.getMonth()+"-"+currDate.getDate());
             if(year == currDate.getFullYear() && month == currDate.getMonth() && day == currDate.getDate()){
                 var relatedCompany = Company.findOne({_id: item.company_id}, function(err, company) {
                     if(err)
