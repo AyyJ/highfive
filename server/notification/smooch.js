@@ -36,7 +36,7 @@ exports.createSmoochUser = function(name, surname, email, phoneNumber){
 				type: 'immediate'
 			}		
 		}).then((response) => {
-			sendMessage(allClear, email);
+			localSendMessage(allClear, email);
 		});
 		smooch.appUsers.linkChannel(email, {
 			type: 'messenger',
