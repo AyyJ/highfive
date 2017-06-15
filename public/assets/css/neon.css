@@ -140,7 +140,8 @@ body .carousel-inner > .active {
 .site-header-container {
   position: fixed;
   z-index: 110;
-  background-color: #24afa9;
+  /*background-color: #24afa9;*/
+  background-color: black;
   overflow:auto;
   width: 70%;
   margin-bottom: 50%;
@@ -233,7 +234,8 @@ body .carousel-inner > .active {
   -moz-background-clip: padding;
   border-radius: 4px 4px 0 0;
   background-clip: padding-box;
-  background: #24afa9;
+  /*background: #24afa9;*/
+  background: black;
   color: white;
 }
 .site-header .site-nav .main-menu > li > a span:after {
@@ -1791,17 +1793,12 @@ section.blog .sidebar .sidebar-content .discussion-list li .details p {
 .mainmargin-container {
 	background: #F1F5F7 no-repeat center center;
 }
-
 .btn-border {
   border: 2px solid white;
-  border-radius: 5px;
-  background: white;
-
+  border-radius: 0px;
 }
-
 .btn-border:hover {
-  border: 2px solid black;
-  border-radius: 5px;
+  border: 2px solid #777;
 }
 .maincontent-container {
 	margin: 0 auto;
@@ -2186,7 +2183,7 @@ section.blog .sidebar .sidebar-content .discussion-list li .details p {
   height: 36px;
 }
 #splash {
-  background: #24afa9;
+  background: #0f0f0f;
 }
 #splash h2 {
   color: #fff;
