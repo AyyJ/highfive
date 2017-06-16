@@ -176,6 +176,7 @@ $(document).ready(function(){
       newAppt.last_name = $('#appt-last').val();
       newAppt.phone_number = $('#appt-number').val();
       newAppt.provider_name = $('#appt-provider').val();
+      newAppt.notify = $('#notify').is(':checked');
 
       userDate = $('#appt-date').val();
       userTime = $('#appt-time').val();

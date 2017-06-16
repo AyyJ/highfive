@@ -7,6 +7,7 @@
 var exports = module.exports;
 
 var Employee = require('../../models/Employee');
+var smooch = require('../../notification/smooch');
 
 exports.login = function(req, res) {
       Employee.findOne({email:req.body.email}, function(err, e) {
@@ -57,6 +58,8 @@ exports.insert = function(req, res) {
         if(err) {
             return res.status(400).json({error: "Can not Save"});
         }
+        console.log('Creating Smooch user (employee)...');
+        smooch.createSmoochUser(employee.first_name, employee.last_name, employee.email, employee.phone_number);
         var employee_json=e.toJSON();
         delete employee_json.password;
         return res.status(200).json(employee_json);
@@ -82,6 +85,7 @@ exports.update = function(req, res) {
             if(err)
                 return res.status(400).json({error: "Can not Save"});
             var employee_json=employee.toJSON();
+            smooch.updateSmoochUser(employee.first_name, employee.last_name, employee.email, employee.phone_number);
             delete employee_json.password;
             return res.status(200).send(employee_json);
         });
