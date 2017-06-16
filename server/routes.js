@@ -1,0 +1,18 @@
+/**
+ * Main application routes
+ */
+
+'use strict';
+
+module.exports = function(app) {
+    var r = require;
+    app.use(r('./routes/home'));
+    app.use('/api/form'         , r('./routes/form'));
+    // app.use('/api'              , r('./routes/theme'));
+    app.use('/api/employees'    , r('./routes/employee'));
+    // app.use('/api/visitorLists' , r('./routes/visitorList'));
+    app.use('/api/companies'    , r('./routes/company'));
+    app.use('/api/appointments' , r('./routes/appointment'));
+    // app.use('/messages' 		, r('./routes/notification'));
+    // app.use('/payment'          , r('./routes/payment'));
+};
