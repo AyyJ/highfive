@@ -16,6 +16,9 @@
  * when front end is served from a something other than our app server.
  */
 var Appointment = require('../../models/Appointment');
+var Company = require('../../models/Company');
+var schedule = require('node-schedule');
+var smooch = require('../../notification/smooch');
 
 /****** Company TEMPLATE ROUTES ******/
 module.exports.template = {};
@@ -31,6 +34,9 @@ module.exports.template.create = function(req, res) {
     appointment.date = param.date;
     appointment.company_id = param.company_id;
     appointment.provider_name = param.provider_name;
+    appointment.notify = param.notify;
+
+    var message = 'Appointment made with '+appointment.first_name+' '+appointment.last_name+' for '+appointment.date;
 
     Appointment.find(
         {
@@ -42,6 +48,18 @@ module.exports.template.create = function(req, res) {
                 appointment.save(function (err, a) {
                     if (err)
                         return res.status(400).json({error: "Could Not Save"});
+                    Company.findOne({_id: appointment.company_id}, function(err, company) {
+                        if(err){
+                            console.log('couldn\'t find related company while making appt');
+                            return;
+                        }
+                        smooch.notifyEmployees(company._id, message);
+                        if(appointment.notify){
+                            //make a smooch user for the client's end user
+                            smooch.createSmoochUser(appointment.first_name, appointment.last_name, "", appointment.phone_number);
+                        }
+                    });
+                    
                     return res.status(200).json(a);
                 });
             }else{
@@ -103,8 +121,10 @@ module.exports.template.delete = function(req, res){
             if(err) {
                 res.status(400).json({error: "Could Not Save"});
             } else {
+                smooch.deleteSmoochUser(a.phone_number);
                 return res.status(200).json(a);
             }
         });
     });
 };
+

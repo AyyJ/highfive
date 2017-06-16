@@ -2,11 +2,11 @@ language: node_js
 node_js:
   - '6'
 before_script:
-  # - npm install -g nightwatch gulp
+  - npm install -g nightwatch gulp
   - DEBUG=highfive:* npm start &
-# script:
-#   - gulp
-#   - nightwatch --config nightwatch.js -e chrome,ie11
+script:
+  - gulp
+  - nightwatch --config nightwatch.js -e chrome,ie11
 deploy:
   skip_cleanup: true
   provider: heroku
@@ -15,6 +15,7 @@ deploy:
   app:
     master: cse112-highfive
     dev: cse112-highfive-staging
+    omnichannel: cse112-highfive-dev2
 notifications:
   slack: cse112-highfive:IwXDKj8qHbdq4dw6GemuC7uL
 addons:
@@ -28,3 +29,4 @@ branches:
   only:
   - master
   - dev
+  - omnichannel

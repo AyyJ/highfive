@@ -7,9 +7,6 @@ $(document).ready(function(){
 
 
     var socket = io(); //Initialize Socket
-    //HIGHFIVE KHALID WAS HERE: SOCKET OBJECT WAS
-    //SET TO "" UNTIL WE FIGURE OUT WHAT SOCKETS DO
-    // var socket = "";
 
     //Socket variables
     var DEBUG = 1;
@@ -21,8 +18,6 @@ $(document).ready(function(){
     var visitorList;
     companyData.company_id = companyData._id;
 
-
-    //var curCompany = JSON.parse(localStorage.getItem('currentCompany'));
     var curUser = JSON.parse(localStorage.getItem('currentUser'));
     var companyName = companyData.name;
 
@@ -30,14 +25,12 @@ $(document).ready(function(){
     $('#user-name').text(curUser.first_name + ' ' +  curUser.last_name);
 
     //Connect to private socket
-    // var companyId = getCookie('company_id');
-    //HIGHFIVE: KHALID COMMENTED THE BELOW LINE UNTIL WE 
-    //FIGURE OUT SOCKETS
     socket.emit(VALIDATE_COMPANY_ID, companyData);
 
    /***
     * Compile all the Handle Bar Templates
     */
+
     //DashBoard Template
     var source = $("#visitor-list-template").html();
     var template = Handlebars.compile(source);
@@ -46,8 +39,7 @@ $(document).ready(function(){
     var modal = $('#visitor-info-template').html();
     var modalTemplate = Handlebars.compile(modal);
 
-    //SOCKET LISTEN FOR VISITOR QUEUE
-    //HIGHFIVE KHALID HAS COMMENTED OUT THIS FUNCTION TOO
+    //Socket listen for visitor queue
     socket.on(VISITOR_LIST_UPDATE, function (data) {
         visitorList = data.visitors
         //Parse Visitor List to format Date
@@ -74,6 +66,7 @@ $(document).ready(function(){
         }
 
        //visitorList.checkin_time = visitorList;
+
         var compiledHtml = template(visitorList);
         $('#visitor-list').html(compiledHtml);
     });
@@ -89,6 +82,69 @@ $(document).ready(function(){
         $('.modal-dialog').html(compiledTemplate);
     });
 
+   /**
+    * @api {delete} /api/visitorLists/company/:company_id/visitor/:visitor_id Delete Visitor from VisList
+    * @apiName DeleteVisitor
+    * @apiGroup Visitor
+    * @apiPermission admin
+    *
+    * @apiDescription Store additional field info not including name and phone_number, in the field additional_info as dictionary type{}
+    *
+    * @apiParam {Number} id The visitorId
+    *
+    * @apiSuccess {Number} _id The Appointment-ID.
+    * @apiSuccess {Number} id The Visitor-ID.
+    * @apiSuccess {String} first_name The first name of the visitor.
+    * @apiSuccess {String} last_name The last name of visitor.
+    * @apiSuccess {String} phone_number The person's number.
+    * @apiSuccess {Date} checkin_time Date visitor checked in.
+    * @apiSuccess {ObjectId} company_id Company-ID for company that created appt.
+    * @apiSuccess {Appointment} appointments A appointment object.
+    * @apiSuccess {Dictionary} additional_info 'Dictionary' for optional fields.
+    *
+    *
+    * @apiSuccessExample Success-Response:
+    *     HTTP/1.1 200 OK
+    *     {
+    *       "_id": "123124124",
+    *       "company_id": "12312355",
+    *       "visitors":
+    *        [
+    *                 {
+    *                   "id": "12314125",
+    *                   "company_id": "12314125",
+    *                   "first_name" : "test",
+    *                   "last_name" : "test",
+    *                   "phone_number": "21324125",
+    *                   "checkin_time": "2016-04-23T18:25:43.511Z",
+    *                   "appointments":
+    *                   [
+    *                           {
+    *                                   "_id" : "12314125",
+    *                                   "name" : "test1",
+    *                                   "phone_number" : "0123456789",
+    *                                   "date" : "2016-04-23T18:25:43.511Z",
+    *                                   "company_id" : "23424125",
+    *                                   "provider_name" : "test test"
+    *                           }
+    *                   ]
+    *                   "additional_info":
+    *                           {
+    *                                   "allergies": "peanuts",
+    *                                   "sex": "male"
+    *                           }
+    *                }
+    *        ]
+    *     }
+    *
+    * @apiError NotFound Could not find VisitorList in question.
+    *
+    * @apiErrorExample Error-Response:
+    *     HTTP/1.1 401 Not Found
+    *     {
+    *       "error": "Can't find visitor List"
+    *     }
+    */
     /***
      * Listener for Checking out a Visitor
      */
@@ -111,16 +167,7 @@ $(document).ready(function(){
 
         socket.emit(REMOVE_VISITOR, removeVisitor);
     });
-/*
-    $(document).on('click','.checkout-btn',function(){
-        var id = $(this).closest('.patient-check-out').attr('value');
-        var removeVisitor = findVisitor(id);
-        console.log(removeVisitor);
-        //removeVisitor.visitor_id = removeVisitor._id;
-        //socket.emit(REMOVE_VISITOR, removeVisitor);
 
-    });
-*/
     /***
      * Compare appointment Date to today's Date
      */
@@ -134,11 +181,14 @@ $(document).ready(function(){
       return (appointmentDate == todayDate);
     }
 
-    /***
-     * Find Specific Visitor Given Visitor ID within the Visitor Array
-     * @param id
-     * @returns {string}
+    /**
+     * @name findVisitor
+     * @description Find Specific Visitor Given Visitor ID within the Visitor
+     * Array
+     * @param {string} - id of visitor
+     * @returns visitor
      */
+
     function findVisitor(id){
 
         for(var visitor in visitorList) {
@@ -151,9 +201,11 @@ $(document).ready(function(){
         }
     }
 
-    /***
-     * Function to format a JSON date object into a string
-     * @param time
+    /**
+     * @name formatTime
+     * @description Function to format a JSON date object into a string
+     * @param {string} current time
+     * @returns {number} a number representing the current time
      */
     function formatTime(time){
         var currentTime = new Date(Date.parse(time));
@@ -186,22 +238,5 @@ $(document).ready(function(){
     $('#logoutButton').on('click',function(){
       localStorage.setItem('userState',0);
     });
-
-
-    /***
-     * TODO order the list by increasing order
-     * @param key
-     */
-    function increasingOrder(key){
-
-    }
-
-    /***
-     * TODO order the list by decreasing order
-     * @param key
-     */
-    function decreasingOrder(key){
-
-    }
 
 });

@@ -1,6 +1,3 @@
-/**
- * Created by DanielKong on 3/8/16.
- */
 $(document).ready(function(){
 
     var companyId;
@@ -19,7 +16,11 @@ $(document).ready(function(){
         ajaxPost('/api/companies',companyData);
     })
 
-    //Grab Company Data from form
+   /**
+    * @name grabCompanyData
+    * @description Grab Company Data from form
+    * @returns {object} company - object created from form
+    */
     function grabCompanyData(){
         var company = {};
         company.name = $('#form-company-name').val();
@@ -29,7 +30,11 @@ $(document).ready(function(){
 
     }
 
-    //Grab employee data from form
+   /**
+    * @name grabEmployeeData
+    * @description Grab employee data from form
+    * @returns {object} employee - created employee object 
+    */
     function grabEmployeeData(){
         var employee = {};
         employee.first_name = $('#form-employee-first').val();
@@ -42,7 +47,12 @@ $(document).ready(function(){
         return employee;
     }
 
-    //Ajax function to create a POST request to server
+   /**
+    * @name ajaxPost
+    * @description Ajax function to create a POST request to server
+    * @param {string} url - 
+    * @param {string} data - 
+    */
     function ajaxPost(url, data){
         $.ajax({
             type: "POST",
@@ -50,7 +60,6 @@ $(document).ready(function(){
             data: data,
             dataType: 'json',
             success: function(response){
-                //console.log(response);
                 if(url == '/api/employees') {
                     localStorage.setItem('userState', 1);
                     localStorage.setItem('currentUser', JSON.stringify(response));
@@ -70,7 +79,10 @@ $(document).ready(function(){
             }
         });
     }
-
+   /**
+    * @name validateCompany
+    * @description Validates company email
+    */
     function validateCompany(){
         var companyName = $('#form-company-name').val();
         var companyEmail = $('#form-email').val();
@@ -83,19 +95,26 @@ $(document).ready(function(){
         if(validateEmail(companyEmail)){
             console.log("please enter a valid email");
         }
-
-
-
-
     }
 
 
 
+   /**
+    * @name validateEmail
+    * @description Validates email address
+    * @returns {Boolean} True if valid otherwise False
+    */
     function validateEmail(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
     }
 
+   /**
+    * @name checkPassword
+    * @description validates password
+    * @param {object} object containing form information
+    * @returns {Boolean} True if valid otherwise False
+    */
     function checkPassword(form){
 
         if(form.first.value == "") {
@@ -146,6 +165,4 @@ $(document).ready(function(){
     function validateForm(){
 
     }
-
-
 });
