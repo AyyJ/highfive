@@ -107,6 +107,22 @@ body#check-in-page{
     background-color: #f1f1f1;
     color: #333;
 }
+.new-guest{
+    position: absolute;
+    left: 50%;
+    margin-top: 25px;
+    margin-left: -75px;
+    /*background-color: #fff;*/
+    width: 150px;
+    height: 50px;
+    border-radius: 3px;
+    display: block;
+    border: none;
+    font-size: 28px;
+    /*background-color: #0abcb3;*/
+    background-color: #f1f1f1;
+    color: #333;
+}
 
 .hide{
     display: none !important;

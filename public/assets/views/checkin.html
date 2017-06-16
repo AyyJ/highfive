@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src = "assets/native/js/shared.js"></script>
-   <meta charset="UTF-8">
-   <title>Check In</title>
-    <link rel="icon" href="assets/images/logo-echelon.png">
-    <link rel="stylesheet" href = "assets/native/css/checkin.css">
+  <script src = "assets/native/js/shared.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.5" />
+  <title>Check In</title>
+  <link rel="icon" href="assets/images/logo-echelon.png">
+  <link rel="stylesheet" href = "assets/native/css/checkin.css">
 </head>
 <body id = 'check-in-page'>
 
-<h1 id = "clock"></h1>
-<form class = "check-in">
-    <h1>Check in</h1>
-    <input class = "visitor-fields" id="visitor-first" type = "text" name = "first" placeholder = "First"> <br>
-    <input class = "visitor-fields" id="visitor-last" type = "text" name = "last" placeholder = "Last"> <br>
-    <input class = "visitor-fields" id="visitor-number" type = "text" name = "phoneNumber" placeholder = "Phone Number">
-    <br>
-    <input class = "submit-check-in" type="button"  value="Submit">
-    <input type="Submit"  value="New Guest">
-</form>
-<!-- <button class="submit-check-in" id="test">Test</button> -->
+  <h1 id = "clock"></h1>
+  <form class = "check-in">
+      <h1>Check in</h1>
+      <input class = "visitor-fields" id="visitor-first" type = "text" name = "first" placeholder = "First"> <br>
+      <input class = "visitor-fields" id="visitor-last" type = "text" name = "last" placeholder = "Last"> <br>
+      <input class = "visitor-fields" id="visitor-number" type = "text" name = "phoneNumber" placeholder = "Phone Number">
+      <br>
+      <input class = "submit-check-in" type="button"  value="Submit"><br><br><br>
+      <input class = "new-guest" type="Submit"  value="New Guest">
+  </form>
+  <!-- <button class="submit-check-in" id="test">Test</button> -->
 
-<div id = "tap-to-check">
-    <p>Tap to check in</p>
-</div>
+  <div id = "tap-to-check">
+      <p>Tap to check in</p>
+  </div>
 
-<script src="assets/js/socket.io.js"></script>
-<script src="assets/js/jquery-1.11.3.min.js"></script>
-<script src="assets/native/js/checkin.js"></script>
+  <script src="assets/js/socket.io.js"></script>
+  <script src="assets/js/jquery-1.11.3.min.js"></script>
+  <script src="assets/native/js/checkin.js"></script>
 
 </body>
 </html>
