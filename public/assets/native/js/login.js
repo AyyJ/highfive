@@ -2,7 +2,6 @@
 $(function() {
    $('#loginButton').click(function () {
        var userData = grabUserData();
-       //alert(userData);
        event.preventDefault();
        ajaxPostUser('/api/employees/login', userData);
        console.log("off we go...");
@@ -20,7 +19,12 @@ $(function() {
    });
 });
 
-//Ajax function to create a POST request to server
+/**
+ * @name ajaxPostUser
+ * @description Ajax function to create a POST request to server
+ * @param {string} url - 
+ * @param {string} data - 
+ */
 function ajaxPostUser(url, data){
    $.ajax({
        type: "POST",
@@ -44,12 +48,14 @@ function ajaxPostUser(url, data){
            console.log(response.responseText);
            window.onerror=handleError();
            event.preventDefault();
-           //location.href = '/login.html';
         }
    });
 }
-// ex) company_id : 56e8a51293a19986040e93fe
-//Ajax function to create a POST request to server
+/**
+ * @name ajaxGetCompanyInfo
+ * @description Ajax function to create a POST request to server
+ * @param {string} url - 
+ */
 function ajaxGetCompanyInfo(url){
    $.ajax({
        type: "GET",
@@ -59,13 +65,16 @@ function ajaxGetCompanyInfo(url){
        dataType: 'json',
        success: function(response){
            console.log(response);
-           //alert(response.name);
            localStorage.setItem('currentCompany', JSON.stringify(response));
        }
    });
 }
 
-//Grab user data from form
+/**
+ * @name grabUserData
+ * @description Grab user data from form
+ * @returns {object} user - user object
+ */
 function grabUserData(){
    var user = {};
    user.email = $('#username').val();
@@ -73,8 +82,11 @@ function grabUserData(){
    return user;
 }
 
-
-
+/**
+ * @name handleError
+ * @description returns error message, 
+ * @returns {Boolean} true
+ */
 function handleError()
 {
    errorlog.innerHTML="Not Valid Username and Password, please type valid one.";

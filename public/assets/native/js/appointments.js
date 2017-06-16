@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
     var companyData = JSON.parse(localStorage.getItem("currentCompany"));
     var myCompanyId = companyData._id;
@@ -93,10 +94,9 @@ $(document).ready(function(){
      *      }
      */ 
 
-   /***
-     * Makes a get request to display list of appts
-     * @param none
-     * @returns displays the appt list
+   /**
+     * @name getAppts
+     * @description Makes a get request to display list of appts
      */
     function getAppts() {
        var json;
@@ -114,10 +114,9 @@ $(document).ready(function(){
        return json;
    }
 
-   /***
-     * When a patient submits their form
-     * @param none
-     * @returns updates the appt list
+   /**
+     * @name submitForms 
+     * @description When a patient submits their form
      */
     function submitForm(){
         var d = grabFormElements();
@@ -146,10 +145,9 @@ $(document).ready(function(){
      *      }
      */ 
 
-    /***
-     * Makes a post request to update list of appts when adding a new employee
-     * @param none
-     * @returns updates the appt list
+    /**
+     * @name updateApptList
+     * @description Makes a post request to update list of appts when adding a new employee
      */
    function updateApptList(obj) {
       $.ajax({
@@ -166,10 +164,9 @@ $(document).ready(function(){
     }
 
 
-    /***
-     * Grabs elements from the check in and puts it into an object
-     * @param none
-     * @returns new appt object
+    /**
+     * @name grabFormElements 
+     * @description Grabs elements from the check in and puts it into an object
      */
     function grabFormElements(){
       var newAppt = {};
@@ -221,7 +218,7 @@ $(document).ready(function(){
     });
 
 
-    /********************* FUNCTIONS TO FORMAT JAVASCRIPT DATES ********************/
+    /******************** FUNCTIONS TO FORMAT JAVASCRIPT DATES ********************/
 
     function formatDate(date){
       var d = new Date(Date.parse(date));

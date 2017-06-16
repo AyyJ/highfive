@@ -17,7 +17,6 @@ $(document).ready(function(){
     //Bind Listeners
     $('#tap-to-check').on('click', startCheckIn);
     $('.submit-check-in').on('click', submitForm);
-    // $('.check-in').on('submit', wrapItUp);
 
     //When a user starts their check in
     function startCheckIn(){
@@ -30,12 +29,16 @@ $(document).ready(function(){
         $('#clock').addClass('hide');     
     }
 
-    //When a patient submits their form
+    /**
+     * @name submitForm
+     * @description When a patient submits their form
+     */
     function submitForm(){
         //event.preventDefault();
         var data = grabFormElements();
         var text = "Name: " + data['first_name'] + " " + data['last_name'] + " Phone Number: " + data['phone_number'];
         var url = localStorage.getItem('hookURL');
+
         //Sends slack notification
         $.ajax({
             data: 'payload=' + JSON.stringify({
@@ -51,7 +54,12 @@ $(document).ready(function(){
         socket.emit(ADD_VISITOR, data);           
     }
 
-    //Grabs elements from the check in and puts it into an object
+    /**
+     * @name grabFormElements
+     * into an object
+     * @description Grabs elements from the check in and puts it
+     * @returns newVisitor - A new visitor object
+     */
     function grabFormElements(){
         var newVisitor = {};
         newVisitor.company_id = companyData._id;
@@ -62,15 +70,17 @@ $(document).ready(function(){
         return newVisitor;
     }
 
-    //CLOCK
+    /**
+     * @name updateClock
+     * @description Updates the clock
+     */
     function updateClock () {
         var currentTime = new Date ( );
         var currentHours = currentTime.getHours ( );
         var currentMinutes = currentTime.getMinutes ( );
-        //var currentSeconds = currentTime.getSeconds ( );
+
         // Pad the minutes and seconds with leading zeros, if required
         currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-        //currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
 
         // Convert the hours component to 12-hour format if needed
         currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
@@ -86,9 +96,9 @@ $(document).ready(function(){
     updateClock();
     setInterval(updateClock, 60 * 1000);
 
-    /***
+    /**
      * Find a specific cookie name
-     * @param cName
+     * @param cName - The name of the cookie
      * @returns {string|*}
      */
     function getCookie(cName) {
@@ -104,6 +114,5 @@ $(document).ready(function(){
         }
 
     }
-
 
 });
